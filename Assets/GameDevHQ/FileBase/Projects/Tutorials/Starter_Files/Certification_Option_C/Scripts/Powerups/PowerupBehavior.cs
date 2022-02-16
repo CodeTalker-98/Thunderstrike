@@ -6,23 +6,30 @@ public class PowerupBehavior : MonoBehaviour
 {
     [Header("Adjustable Values")]
     [SerializeField] private float _movementSpeed = 15.0f;
-    [SerializeField] private MeshFilter[] _mesh;
+    [SerializeField] private GameObject[] _meshs;
+    [SerializeField] private Material _material;
     [SerializeField] private Powerup _powerup;
+
+    private int _index;
 
     Vector3 _direction = Vector3.left;
 
     private Player _player;
+    private MeshFilter _currentMesh;
+    private MeshRenderer _renderer;
 
     private enum Powerup
     {
-        Shield,
         Damage,
+        Shield,
         Invincibility
     }
 
     private void Awake()
     {
         _player = GameObject.Find("Player Manager").GetComponentInChildren<Player>();
+        _currentMesh = GetComponentInChildren<MeshFilter>();
+        _renderer = GetComponentInChildren<MeshRenderer>();
     }
 
     private void Start()
@@ -37,21 +44,26 @@ public class PowerupBehavior : MonoBehaviour
         if (randomInt < 3072)
         {
             _powerup = Powerup.Damage;
+            _index = 0;
         }
         else if (randomInt > 3071 && randomInt < 4095)
         {
             _powerup = Powerup.Shield;
+            _index = 1;
         }
         else if (randomInt > 4095)
         {
             _powerup = Powerup.Invincibility;
+            _index = 2;
         }
+
+        _currentMesh.sharedMesh = _meshs[_index].GetComponent<MeshFilter>().sharedMesh;
+        _renderer.material = _material;
     }
 
     private void Update()
     {
         CalculateMovement();
-        PowerupFunctionality();
     }
 
     private void CalculateMovement()
@@ -60,29 +72,36 @@ public class PowerupBehavior : MonoBehaviour
         transform.Translate(velocity * Time.deltaTime);
     }
 
-    private void PowerupFunctionality()
-    {
-        switch (_powerup)
-        {
-            case Powerup.Damage:
-                //Choose Mesh
-                break;
-            case Powerup.Shield:
-                //Choose Mesh
-                break;
-            case Powerup.Invincibility:
-                //Choose Mesh
-                break;
-            default:
-                break;
-        }
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
             Player p = other.GetComponent<Player>();
+            
+            if (p != null)
+            {
+                switch (_powerup)
+                {
+                    case Powerup.Damage:
+                        p.ChangeWeapon();
+                        break;
+                    case Powerup.Shield:
+                        p.EnableShield();
+                        break;
+                    case Powerup.Invincibility:
+                        p.EnableInvincibility();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            //play sound??
+            Destroy(this.gameObject);
         }
+    }
+
+    private void OnBecameInvisible()
+    {
+        Destroy(this.gameObject);
     }
 }
