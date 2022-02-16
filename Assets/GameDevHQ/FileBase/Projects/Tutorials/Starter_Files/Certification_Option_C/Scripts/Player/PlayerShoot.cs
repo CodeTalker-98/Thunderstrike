@@ -14,9 +14,11 @@ public class PlayerShoot : MonoBehaviour
 
     private float _cycleTime = -1.0f;
 
+    private int _prefabIndex = 0;
+
     private void FixedUpdate()
     {
-        ShootProjectile(_bulletPrefab[0]);  //Index == health -1
+        ShootProjectile(_bulletPrefab[(_prefabIndex - 1)]);
     }
 
     private void ShootProjectile(GameObject projectile)

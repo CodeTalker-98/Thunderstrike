@@ -11,6 +11,7 @@ public class PowerupBehavior : MonoBehaviour
     [SerializeField] private Powerup _powerup;
 
     private int _index;
+    private int _scoreValue;
 
     Vector3 _direction = Vector3.left;
 
@@ -44,16 +45,19 @@ public class PowerupBehavior : MonoBehaviour
         if (randomInt < 3072)
         {
             _powerup = Powerup.Damage;
+            _scoreValue = 300;
             _index = 0;
         }
         else if (randomInt > 3071 && randomInt < 4095)
         {
             _powerup = Powerup.Shield;
+            _scoreValue = 500;
             _index = 1;
         }
         else if (randomInt > 4095)
         {
             _powerup = Powerup.Invincibility;
+            _scoreValue = 4500;
             _index = 2;
         }
 
@@ -95,6 +99,7 @@ public class PowerupBehavior : MonoBehaviour
                         break;
                 }
             }
+            //play collected anim
             //play sound??
             Destroy(this.gameObject);
         }
