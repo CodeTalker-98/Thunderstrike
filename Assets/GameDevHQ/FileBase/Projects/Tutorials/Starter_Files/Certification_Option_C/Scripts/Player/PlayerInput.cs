@@ -18,6 +18,17 @@ public class PlayerInput : MonoBehaviour
 
         _inputs = new GameInputActions();
         _inputs.Player.Enable();
+        InitializePerformedActions();
+    }
+
+    private void InitializePerformedActions()
+    {
+        _inputs.Player.Pause.performed += Pause_performed;
+    }
+
+    private void Pause_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        //Pause Game from game manager??
     }
 
     private void FixedUpdate()

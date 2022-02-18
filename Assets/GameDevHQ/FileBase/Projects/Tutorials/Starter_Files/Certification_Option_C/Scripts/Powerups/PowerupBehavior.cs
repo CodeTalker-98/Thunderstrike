@@ -10,8 +10,11 @@ public class PowerupBehavior : MonoBehaviour
     [SerializeField] private Material _material;
     [SerializeField] private Powerup _powerup;
 
+    [Header("Prefabs")]
+    [SerializeField] private GameObject _collectedPrefab;
+
     private int _index;
-    private int _scoreValue;
+    private int _scoreValue = 0;
 
     Vector3 _direction = Vector3.left;
 
@@ -45,19 +48,19 @@ public class PowerupBehavior : MonoBehaviour
         if (randomInt < 3072)
         {
             _powerup = Powerup.Damage;
-            _scoreValue = 300;
+            _scoreValue = 750;
             _index = 0;
         }
         else if (randomInt > 3071 && randomInt < 4095)
         {
             _powerup = Powerup.Shield;
-            _scoreValue = 500;
+            _scoreValue = 1000;
             _index = 1;
         }
         else if (randomInt > 4095)
         {
             _powerup = Powerup.Invincibility;
-            _scoreValue = 4500;
+            _scoreValue = 5000;
             _index = 2;
         }
 
@@ -98,6 +101,9 @@ public class PowerupBehavior : MonoBehaviour
                     default:
                         break;
                 }
+
+                //add to score
+
             }
             //play collected anim
             //play sound??

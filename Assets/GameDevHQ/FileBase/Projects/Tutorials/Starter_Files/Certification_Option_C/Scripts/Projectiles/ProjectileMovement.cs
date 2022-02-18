@@ -6,14 +6,26 @@ public class ProjectileMovement : MonoBehaviour
 {
     [Header("Adjustable Values")]
     [SerializeField] private float _movementSpeed = 15.0f;
+    [SerializeField] private int _damageAmount = 1;
+
+    [Header("Prefabs")]
+    [SerializeField] private GameObject _impactPrefab;
 
     private bool _isPlayerProjectile = false;
 
     private Vector3 _direction = Vector3.zero;
 
+    private SpriteRenderer _projectileRenderer;
+
     private void Start()
     {
+        Init();
         CheckID();
+    }
+
+    private void Init()
+    {
+        _projectileRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void CheckID()
@@ -25,6 +37,7 @@ public class ProjectileMovement : MonoBehaviour
         else
         {
             _direction = Vector3.left;
+            _projectileRenderer.flipX = true;
         }
     }
 
@@ -39,13 +52,28 @@ public class ProjectileMovement : MonoBehaviour
         transform.Translate(velocity * Time.deltaTime);
     }
 
-    public void SetPlayerID()
+    private void OnTriggerEnter(Collider other)
     {
-        _isPlayerProjectile = true;
+        if (other.tag == "Enemy" && _isPlayerProjectile || other.tag == "Player" && !_isPlayerProjectile)
+        {
+            IDamagable hit = other.GetComponent<IDamagable>();
+
+            if (hit != null)
+            {
+                hit.Damage(_damageAmount);
+                //Instantiate hit effect
+                Destroy(this.gameObject);
+            }
+        }
     }
 
     private void OnBecameInvisible()
     {
         Destroy(this.gameObject);
+    }
+
+    public void SetPlayerID()
+    {
+        _isPlayerProjectile = true;
     }
 }

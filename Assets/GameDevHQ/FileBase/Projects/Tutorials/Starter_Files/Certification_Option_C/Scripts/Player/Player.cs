@@ -16,6 +16,7 @@ public class Player : MonoBehaviour, IDamagable
     [Header("Prefabs")]
     [SerializeField] private GameObject _shieldPrefab;
     [SerializeField] private GameObject _invincibilityPrefab;
+    [SerializeField] private GameObject _deathPrefab;
 
     public int Health { get; set; }
 
@@ -55,8 +56,8 @@ public class Player : MonoBehaviour, IDamagable
         if (Health < 1)
         {
             _isDead = true;
-            //play death animation
-            Destroy(this.gameObject);
+            //Instantiate death animation
+            this.gameObject.SetActive(false);
         }
 
         if (_canEnableShield)
@@ -83,7 +84,6 @@ public class Player : MonoBehaviour, IDamagable
     {
         _canEnableInvincibility = true;
         _invincibilityPrefab.SetActive(true);
-        Debug.Break();
         //Do something with a shader to make it like Mario Kart Invincibility??
     }
 }
