@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour, IDamagable
     [SerializeField] protected int _collisionDamage = 1;
     [SerializeField] protected int _scoreValue = 500;
     [SerializeField] protected float _colorChangeTime = 1.0f;
+    [SerializeField] protected Color[] _colors;
 
     [Header("Debug")]
     [SerializeField] protected bool _canSpawnPrefab = false;
@@ -18,10 +19,11 @@ public class Enemy : MonoBehaviour, IDamagable
     [SerializeField] protected GameObject _powerupPrefab;
     [SerializeField] protected GameObject _deathPrefab;
 
-    private MeshRenderer _renderer;
+    private int _colorIndex = 0;
 
-    private Color _currentColor;
-    private Color _targetColor;
+    private float _colorCycleTime = -1.0f;
+
+    private MeshRenderer _renderer;
 
     public int Health { get; set; }
 
@@ -57,22 +59,20 @@ public class Enemy : MonoBehaviour, IDamagable
 
     private void ChangeColor()
     {
-        if (_colorChangeTime < Time.time)
+        _renderer.material.color = Color.Lerp(_renderer.material.color, _colors[_colorIndex], _colorChangeTime * Time.deltaTime);
+        
+        if (_colorCycleTime < Time.time)
         {
-            _currentColor = _targetColor;
+            _colorCycleTime = _colorChangeTime + Time.time;
 
-            _renderer.material.color = _currentColor;
-
-            _targetColor = new Color(Random.value, Random.value, Random.value);
-
-            float time = _colorChangeTime;
-            _colorChangeTime = time + Time.time;
-        }
-        else
-        {
-            _renderer.material.color = Color.Lerp(_currentColor, _targetColor, _colorChangeTime);
-
-            //_colorChangeTime -= Time.deltaTime;
+            if (_colorIndex < _colors.Length - 1 )
+            {
+                _colorIndex ++;
+            }
+            else
+            {
+                _colorIndex = 0;
+            }
         }
     }
 

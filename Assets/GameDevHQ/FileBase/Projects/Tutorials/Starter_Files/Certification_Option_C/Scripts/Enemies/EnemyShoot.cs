@@ -7,24 +7,56 @@ public class EnemyShoot : MonoBehaviour
     [Header("Adjustable Values")]
     [SerializeField] private float _fireRate = 0.5f;
     [SerializeField] private float _lineOfSight = 50.0f;
+    [SerializeField] private LookDirection _lookDirection;
 
     [Header("Prefabs")]
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private Transform _firingOffset;
 
+    private Vector3 _aimDirection;
+
+    private enum LookDirection
+    {
+        Up,
+        Down,
+        Left,
+        Right,
+    }
+
     private float _cycleTime = -1.0f;
+
+    private void Update()
+    {
+        switch (_lookDirection)
+        {
+            case LookDirection.Up:
+                _aimDirection = Vector3.up;
+                break;
+            case LookDirection.Down:
+                _aimDirection = Vector3.down;
+                break;
+            case LookDirection.Left:
+                _aimDirection = Vector3.left;
+                break;
+            case LookDirection.Right:
+                _aimDirection = Vector3.right;
+                break;
+            default:
+                break;
+        }
+    }
 
     private void FixedUpdate()
     {
-        ShootProjectile(_bulletPrefab);
+        ShootProjectile(_bulletPrefab, _aimDirection);
     }
 
-    private void ShootProjectile(GameObject projectile)
+    private void ShootProjectile(GameObject projectile, Vector3 aimDirection)
     {
         if (_cycleTime < Time.time)
         {
             RaycastHit hitInfo;
-            Vector3 direction = Vector3.left;
+            Vector3 direction = aimDirection;
 
             if (Physics.Raycast(transform.position, direction, out hitInfo, _lineOfSight))
             {
@@ -37,6 +69,7 @@ public class EnemyShoot : MonoBehaviour
 
                     for (int i = 0; i < projectiles.Length; i++)
                     {
+                        projectiles[i].SetProjectileDirection(_aimDirection);
                         //Do something if need be
                     }
 

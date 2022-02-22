@@ -36,7 +36,7 @@ public class ProjectileMovement : MonoBehaviour
         }
         else
         {
-            _direction = Vector3.left;
+            //_direction = Vector3.left;
             _projectileRenderer.flipX = true;
         }
     }
@@ -75,5 +75,10 @@ public class ProjectileMovement : MonoBehaviour
     public void SetPlayerID()
     {
         _isPlayerProjectile = true;
+    }
+
+    public void SetProjectileDirection(Vector3 direction)
+    {
+        _direction = direction;
     }
 }

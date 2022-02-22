@@ -8,6 +8,6 @@ public class DestroyVFX : MonoBehaviour
 
     public void Destroy()
     {
-        Destroy(this.gameObject);
+        Destroy(transform.parent.gameObject);
     }
 }

@@ -38,18 +38,22 @@ public class Player : MonoBehaviour, IDamagable
 
     private void Update()
     {
-        Health = _health;
         Debug.Log("Health: " + Health);
     }
 
     public void Damage(int damageAmount)
     {
-        if (_isDead)
+        if (_isDead || _canEnableInvincibility)
         {
             return;
         }
 
-        if (!_canEnableShield || !_canEnableInvincibility)
+        if (_canEnableShield)
+        {
+            _canEnableShield = false;
+            _shieldPrefab.SetActive(false);
+        }
+        else
         {
             Health -= damageAmount;
         }
@@ -60,17 +64,13 @@ public class Player : MonoBehaviour, IDamagable
             Instantiate(_deathPrefab, transform.position, Quaternion.identity);
             this.gameObject.SetActive(false);
         }
-
-        if (_canEnableShield)
-        {
-            _canEnableShield = false;
-        }
     }
 
     public void ChangeWeapon()
     {
         if (Health < 6)
         {
+            Debug.Log("ChangeWeapon()");
             Health ++;
         }
     }
@@ -78,12 +78,17 @@ public class Player : MonoBehaviour, IDamagable
     public void EnableShield()
     {
         _canEnableShield = true;
-        _shieldPrefab.SetActive(true);
+
+        if (!_invincibilityPrefab.activeSelf)
+        {
+            _shieldPrefab.SetActive(true);
+        }
     }
 
     public void EnableInvincibility()
     {
         _canEnableInvincibility = true;
+        _shieldPrefab.SetActive(false);
         _invincibilityPrefab.SetActive(true);
         //Do something with a shader to make it like Mario Kart Invincibility??
     }

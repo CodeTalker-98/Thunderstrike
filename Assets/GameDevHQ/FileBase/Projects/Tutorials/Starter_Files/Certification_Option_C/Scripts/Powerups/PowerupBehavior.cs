@@ -91,6 +91,7 @@ public class PowerupBehavior : MonoBehaviour
                 {
                     case Powerup.Damage:
                         p.ChangeWeapon();
+                        Debug.Log("OnTriggerEnter()");
                         break;
                     case Powerup.Shield:
                         p.EnableShield();
