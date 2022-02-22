@@ -105,7 +105,8 @@ public class PowerupBehavior : MonoBehaviour
                 //add to score
 
             }
-            //play collected anim
+
+            Instantiate(_collectedPrefab, other.transform.position, Quaternion.identity);
             //play sound??
             Destroy(this.gameObject);
         }

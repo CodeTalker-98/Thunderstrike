@@ -6,7 +6,9 @@ public class Enemy : MonoBehaviour, IDamagable
 {
     [Header("Adjustable Values")]
     [SerializeField] protected int _health = 1;
+    [SerializeField] protected int _collisionDamage = 1;
     [SerializeField] protected int _scoreValue = 500;
+    [SerializeField] protected float _colorChangeTime = 1.0f;
 
     [Header("Debug")]
     [SerializeField] protected bool _canSpawnPrefab = false;
@@ -16,11 +18,16 @@ public class Enemy : MonoBehaviour, IDamagable
     [SerializeField] protected GameObject _powerupPrefab;
     [SerializeField] protected GameObject _deathPrefab;
 
+    private MeshRenderer _renderer;
+
+    private Color _currentColor;
+    private Color _targetColor;
+
     public int Health { get; set; }
 
     private void Awake()
     {
-        
+        _renderer = GameObject.Find("HIND Model").GetComponent<MeshRenderer>();
     }
 
     private void Start()
@@ -32,11 +39,40 @@ public class Enemy : MonoBehaviour, IDamagable
     {
         Health = _health;
 
-        int randomInt = Random.Range(0, 5);
+        int randomInt = Random.Range(0, 1);
 
         if (randomInt == 0 && !_isBoss)
         {
             _canSpawnPrefab = true;
+        }
+    }
+
+    private void Update()
+    {
+        if (_canSpawnPrefab && _renderer != null)
+        {
+            ChangeColor();
+        }
+    }
+
+    private void ChangeColor()
+    {
+        if (_colorChangeTime < Time.time)
+        {
+            _currentColor = _targetColor;
+
+            _renderer.material.color = _currentColor;
+
+            _targetColor = new Color(Random.value, Random.value, Random.value);
+
+            float time = _colorChangeTime;
+            _colorChangeTime = time + Time.time;
+        }
+        else
+        {
+            _renderer.material.color = Color.Lerp(_currentColor, _targetColor, _colorChangeTime);
+
+            //_colorChangeTime -= Time.deltaTime;
         }
     }
 
@@ -53,13 +89,22 @@ public class Enemy : MonoBehaviour, IDamagable
                 Instantiate(_powerupPrefab, transform.position, Quaternion.identity);
             }
 
-            //Instantiate death
+            Instantiate(_deathPrefab, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
     }
 
-    private void OnBecameInvisible()
+    private void OnTriggerEnter(Collider other)
     {
-        Destroy(this.gameObject);
+        if (other.tag == "Player")
+        {
+            IDamagable hit = other.GetComponent<IDamagable>();
+
+            if (hit != null)
+            {
+                Damage(_collisionDamage);
+                hit.Damage(_collisionDamage);
+            }
+        }
     }
 }

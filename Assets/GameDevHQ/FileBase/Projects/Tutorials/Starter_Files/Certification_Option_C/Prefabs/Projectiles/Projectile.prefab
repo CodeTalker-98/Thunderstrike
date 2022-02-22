@@ -149,7 +149,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movementSpeed: 15
-  _damageAmmount: 1
+  _damageAmount: 1
+  _impactPrefab: {fileID: 875477905023730217, guid: 6c884d4eb85cab24f90b47759eed954b,
+    type: 3}
 --- !u!65 &8704957462261024620
 BoxCollider:
   m_ObjectHideFlags: 0

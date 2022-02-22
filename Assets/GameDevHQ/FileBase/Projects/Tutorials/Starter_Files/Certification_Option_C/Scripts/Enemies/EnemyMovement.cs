@@ -29,4 +29,9 @@ public class EnemyMovement : MonoBehaviour
         Vector3 velocity = _direction * _movementSpeed;
         transform.Translate(velocity * Time.deltaTime);
     }
+
+    private void OnBecameInvisible()
+    {
+        Destroy(this.gameObject);
+    }
 }

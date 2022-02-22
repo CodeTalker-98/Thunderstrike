@@ -15183,11 +15183,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 1
   _canEnableShield: 0
-  _canEnableInvincibility: 0
+  _canEnableInvincibility: 1
   _isDead: 0
   _score: 0
   _shieldPrefab: {fileID: 4516410117397349614}
   _invincibilityPrefab: {fileID: 1272608598}
+  _deathPrefab: {fileID: 5018932702522061697, guid: 41b18f0ba72faa640a827d665c0cbbcf,
+    type: 3}
 --- !u!65 &1477206601
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15226,6 +15228,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1516641668}
+  - component: {fileID: 1516641672}
   - component: {fileID: 1516641669}
   - component: {fileID: 1516641670}
   - component: {fileID: 1516641667}
@@ -15335,6 +15338,28 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &1516641672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1516641666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff9a7a9db9ee003479a5956258ea42b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 1
+  _collisionDamage: 1
+  _scoreValue: 500
+  _colorChangeTime: 1
+  _canSpawnPrefab: 0
+  _isBoss: 0
+  _powerupPrefab: {fileID: 998905856523297257, guid: 782f409842896e549b71f1e75b878a75,
+    type: 3}
+  _deathPrefab: {fileID: 5018932702522061697, guid: 41b18f0ba72faa640a827d665c0cbbcf,
+    type: 3}
 --- !u!1 &1911912151
 GameObject:
   m_ObjectHideFlags: 0

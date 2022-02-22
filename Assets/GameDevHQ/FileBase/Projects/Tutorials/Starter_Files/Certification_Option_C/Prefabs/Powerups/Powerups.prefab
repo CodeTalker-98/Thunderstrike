@@ -53,6 +53,8 @@ MonoBehaviour:
   - {fileID: 100000, guid: 1c33db686a6591245b76e3fee765b697, type: 3}
   _material: {fileID: 2100000, guid: 4de898db10ae6f54ba1d9809a84ae1c5, type: 2}
   _powerup: 0
+  _collectedPrefab: {fileID: 8963575961497753869, guid: 16e1d06b8c09cfd4788a3370051739c8,
+    type: 3}
 --- !u!65 &998905856523297261
 BoxCollider:
   m_ObjectHideFlags: 0

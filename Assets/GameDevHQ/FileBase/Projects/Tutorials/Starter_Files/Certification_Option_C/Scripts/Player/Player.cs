@@ -12,6 +12,7 @@ public class Player : MonoBehaviour, IDamagable
     [SerializeField] private bool _canEnableInvincibility = false;
     [SerializeField] private bool _isDead = false;
     [SerializeField] private int _score = 0;
+    //Negative score for deathv
 
     [Header("Prefabs")]
     [SerializeField] private GameObject _shieldPrefab;
@@ -56,7 +57,7 @@ public class Player : MonoBehaviour, IDamagable
         if (Health < 1)
         {
             _isDead = true;
-            //Instantiate death animation
+            Instantiate(_deathPrefab, transform.position, Quaternion.identity);
             this.gameObject.SetActive(false);
         }
 

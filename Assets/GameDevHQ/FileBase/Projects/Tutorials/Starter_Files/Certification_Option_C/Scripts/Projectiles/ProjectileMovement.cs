@@ -61,7 +61,7 @@ public class ProjectileMovement : MonoBehaviour
             if (hit != null)
             {
                 hit.Damage(_damageAmount);
-                //Instantiate hit effect
+                Instantiate(_impactPrefab, transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
             }
         }
