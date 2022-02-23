@@ -36,7 +36,6 @@ public class ProjectileMovement : MonoBehaviour
         }
         else
         {
-            //_direction = Vector3.left;
             _projectileRenderer.flipX = true;
         }
     }

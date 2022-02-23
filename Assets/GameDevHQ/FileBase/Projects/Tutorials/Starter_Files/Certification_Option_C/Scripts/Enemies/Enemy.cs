@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour, IDamagable
 
     private void Awake()
     {
-        _renderer = GameObject.Find("HIND Model").GetComponent<MeshRenderer>();
+        _renderer = this.gameObject.transform.GetChild(0).GetComponent<MeshRenderer>();
     }
 
     private void Start()
@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour, IDamagable
     {
         Health = _health;
 
-        int randomInt = Random.Range(0, 1);
+        int randomInt = Random.Range(0, 5); //CHGANGE TO 5!!!!
 
         if (randomInt == 0 && !_isBoss)
         {

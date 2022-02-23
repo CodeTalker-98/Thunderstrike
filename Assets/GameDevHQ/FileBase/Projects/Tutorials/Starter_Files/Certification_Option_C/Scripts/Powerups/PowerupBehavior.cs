@@ -18,7 +18,6 @@ public class PowerupBehavior : MonoBehaviour
 
     Vector3 _direction = Vector3.left;
 
-    private Player _player;
     private MeshFilter _currentMesh;
     private MeshRenderer _renderer;
 
@@ -31,7 +30,6 @@ public class PowerupBehavior : MonoBehaviour
 
     private void Awake()
     {
-        _player = GameObject.Find("Player Manager").GetComponentInChildren<Player>();
         _currentMesh = GetComponentInChildren<MeshFilter>();
         _renderer = GetComponentInChildren<MeshRenderer>();
     }
@@ -91,7 +89,6 @@ public class PowerupBehavior : MonoBehaviour
                 {
                     case Powerup.Damage:
                         p.ChangeWeapon();
-                        Debug.Log("OnTriggerEnter()");
                         break;
                     case Powerup.Shield:
                         p.EnableShield();

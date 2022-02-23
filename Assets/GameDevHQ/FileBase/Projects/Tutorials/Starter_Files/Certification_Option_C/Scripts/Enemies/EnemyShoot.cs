@@ -13,6 +13,8 @@ public class EnemyShoot : MonoBehaviour
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private Transform _firingOffset;
 
+    private float _cycleTime = -1.0f;
+
     private Vector3 _aimDirection;
 
     private enum LookDirection
@@ -23,9 +25,12 @@ public class EnemyShoot : MonoBehaviour
         Right,
     }
 
-    private float _cycleTime = -1.0f;
-
     private void Update()
+    {
+        SetDirection();
+    }
+
+    private void SetDirection()
     {
         switch (_lookDirection)
         {
@@ -69,7 +74,7 @@ public class EnemyShoot : MonoBehaviour
 
                     for (int i = 0; i < projectiles.Length; i++)
                     {
-                        projectiles[i].SetProjectileDirection(_aimDirection);
+                        projectiles[i].SetProjectileDirection(direction);
                         //Do something if need be
                     }
 

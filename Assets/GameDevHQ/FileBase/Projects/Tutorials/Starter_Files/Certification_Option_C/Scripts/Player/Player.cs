@@ -68,9 +68,8 @@ public class Player : MonoBehaviour, IDamagable
 
     public void ChangeWeapon()
     {
-        if (Health < 6)
+        if (Health < 5)
         {
-            Debug.Log("ChangeWeapon()");
             Health ++;
         }
     }
