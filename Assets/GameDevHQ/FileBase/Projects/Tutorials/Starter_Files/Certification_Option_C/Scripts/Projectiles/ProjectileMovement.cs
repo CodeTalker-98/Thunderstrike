@@ -15,8 +15,6 @@ public class ProjectileMovement : MonoBehaviour
 
     private Vector3 _direction = Vector3.zero;
 
-    private SpriteRenderer _projectileRenderer;
-
     private void Start()
     {
         Init();
@@ -25,7 +23,7 @@ public class ProjectileMovement : MonoBehaviour
 
     private void Init()
     {
-        _projectileRenderer = GetComponentInChildren<SpriteRenderer>();
+
     }
 
     private void CheckID()
@@ -33,10 +31,6 @@ public class ProjectileMovement : MonoBehaviour
         if (_isPlayerProjectile)
         {
             _direction = Vector3.right;
-        }
-        else
-        {
-            _projectileRenderer.flipX = true;
         }
     }
 
