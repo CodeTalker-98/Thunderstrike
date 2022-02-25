@@ -32,6 +32,13 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        Destroy(this.gameObject);
+        //if (this.gameObject.transform.parent != null)
+        //{
+        //    Destroy(transform.parent.gameObject);
+        //}
+        //else
+        //{
+            Destroy(this.gameObject);
+        //}
     }
 }
