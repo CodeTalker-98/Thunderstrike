@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour, IDamagable
 
     [Header("Prefabs")]
     [SerializeField] protected GameObject _powerupPrefab;
+    [SerializeField] protected GameObject _collisionPrefab;
     [SerializeField] protected GameObject _deathPrefab;
 
     private int _colorIndex = 0;
@@ -102,6 +103,7 @@ public class Enemy : MonoBehaviour, IDamagable
 
             if (hit != null)
             {
+                Instantiate(_collisionPrefab, other.transform.position, Quaternion.identity);
                 Damage(_collisionDamage);
                 hit.Damage(_collisionDamage);
             }

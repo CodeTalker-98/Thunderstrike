@@ -93,6 +93,8 @@ MonoBehaviour:
   _isBoss: 0
   _powerupPrefab: {fileID: 998905856523297257, guid: 782f409842896e549b71f1e75b878a75,
     type: 3}
+  _collisionPrefab: {fileID: 4691645116330879498, guid: 4ce4a3d6140d9cf449ed4b175ce22237,
+    type: 3}
   _deathPrefab: {fileID: 5018932702522061697, guid: 41b18f0ba72faa640a827d665c0cbbcf,
     type: 3}
 --- !u!114 &8518703493151351720

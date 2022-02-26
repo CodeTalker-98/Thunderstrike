@@ -93,6 +93,8 @@ MonoBehaviour:
   _isBoss: 0
   _powerupPrefab: {fileID: 998905856523297257, guid: 782f409842896e549b71f1e75b878a75,
     type: 3}
+  _collisionPrefab: {fileID: 4691645116330879498, guid: 4ce4a3d6140d9cf449ed4b175ce22237,
+    type: 3}
   _deathPrefab: {fileID: 5018932702522061697, guid: 41b18f0ba72faa640a827d665c0cbbcf,
     type: 3}
 --- !u!114 &5907066010098499096
@@ -123,7 +125,7 @@ MonoBehaviour:
   _fireRate: 0.5
   _lineOfSight: 50
   _lookDirection: 1
-  _bulletPrefab: {fileID: 1469040505689095664, guid: 26ce54dac4df248438ec42239491fce4,
+  _bulletPrefab: {fileID: 1574492793446660522, guid: 69301369e2b5b0c498b2c5d631239c24,
     type: 3}
   _firingOffset: {fileID: 5907066009901313131}
 --- !u!65 &5907066010098499102
@@ -335,6 +337,8 @@ MonoBehaviour:
   _isBoss: 0
   _powerupPrefab: {fileID: 998905856523297257, guid: 782f409842896e549b71f1e75b878a75,
     type: 3}
+  _collisionPrefab: {fileID: 4691645116330879498, guid: 4ce4a3d6140d9cf449ed4b175ce22237,
+    type: 3}
   _deathPrefab: {fileID: 5018932702522061697, guid: 41b18f0ba72faa640a827d665c0cbbcf,
     type: 3}
 --- !u!114 &9051902160686760477
@@ -365,7 +369,7 @@ MonoBehaviour:
   _fireRate: 0.5
   _lineOfSight: 50
   _lookDirection: 0
-  _bulletPrefab: {fileID: 1469040505689095664, guid: 26ce54dac4df248438ec42239491fce4,
+  _bulletPrefab: {fileID: 3710217074163048709, guid: 1fedad467cbf2b34a983e295dde9c26e,
     type: 3}
   _firingOffset: {fileID: 9051902160236076669}
 --- !u!65 &9051902160686760467

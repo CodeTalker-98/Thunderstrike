@@ -53,11 +53,25 @@ public class ProjectileMovement : MonoBehaviour
 
             if (hit != null)
             {
-                hit.Damage(_damageAmount);
-                Instantiate(_impactPrefab, transform.position, Quaternion.identity);
-                Destroy(this.gameObject);
+                CallDamage(hit);
+            }
+            else
+            {
+                IDamagable hitParent = other.transform.parent.GetComponent<IDamagable>();
+
+                if (hitParent != null)
+                {
+                    CallDamage(hitParent);
+                }
             }
         }
+    }
+
+    private void CallDamage(IDamagable hit)
+    {
+        hit.Damage(_damageAmount);
+        Instantiate(_impactPrefab, transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
     }
 
     private void OnBecameInvisible()
