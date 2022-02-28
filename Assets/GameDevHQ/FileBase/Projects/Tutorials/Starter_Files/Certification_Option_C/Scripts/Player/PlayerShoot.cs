@@ -12,6 +12,9 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private GameObject[] _bulletPrefab;
     [SerializeField] private Transform _firingOffset;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClip[] _gunSounds;
+
     private float _cycleTime = -1.0f;
 
     private int _prefabIndex = 1;
@@ -35,8 +38,6 @@ public class PlayerShoot : MonoBehaviour
                     GameObject firedProjectile = Instantiate(projectile, _firingOffset.position, Quaternion.identity);
                     ProjectileMovement[] projectiles = firedProjectile.GetComponents<ProjectileMovement>();
 
-                    //Play sound
-
                     if (projectiles != null)
                     {
                         for (int i = 0; i < projectiles.Length; i++)
@@ -44,6 +45,8 @@ public class PlayerShoot : MonoBehaviour
                             projectiles[i].SetPlayerID();
                         }
                     }
+
+                    AudioManager.instance.PlaySound(_gunSounds[_prefabIndex - 1], transform.position);
 
                     _cycleTime = Time.time + _fireRate;
                 }
