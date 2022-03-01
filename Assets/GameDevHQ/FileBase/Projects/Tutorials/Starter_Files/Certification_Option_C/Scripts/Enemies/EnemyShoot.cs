@@ -25,6 +25,26 @@ public class EnemyShoot : MonoBehaviour
         Right,
     }
 
+    private void Start()
+    {
+        Init();
+    }
+
+    private void Init()
+    {
+        if (GameManager.instance != null)
+        {
+            if (GameManager.instance.isHardModeOn)
+            {
+                _fireRate /= 2.0f;
+            }
+            else
+            {
+                _fireRate /= 1.0f;
+            }
+        }
+    }
+
     private void Update()
     {
         SetDirection();

@@ -100,7 +100,7 @@ public class PowerupBehavior : MonoBehaviour
                         break;
                 }
 
-                //add to score
+                p.UpdateScore(_scoreValue);
 
             }
 

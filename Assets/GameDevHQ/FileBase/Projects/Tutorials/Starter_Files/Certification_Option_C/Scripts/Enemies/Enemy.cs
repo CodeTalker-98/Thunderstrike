@@ -24,6 +24,8 @@ public class Enemy : MonoBehaviour, IDamagable
 
     private float _colorCycleTime = -1.0f;
 
+    private Player _player;
+
     private MeshRenderer _renderer;
 
     public int Health { get; set; }
@@ -31,6 +33,7 @@ public class Enemy : MonoBehaviour, IDamagable
     private void Awake()
     {
         _renderer = this.gameObject.transform.GetChild(0).GetComponent<MeshRenderer>();
+        _player = GameObject.Find("/Player Manager/Player").GetComponent<Player>();
     }
 
     private void Start()
@@ -40,7 +43,19 @@ public class Enemy : MonoBehaviour, IDamagable
 
     private void Init()
     {
-        Health = _health;
+        if (GameManager.instance != null)
+        {
+            if (GameManager.instance.isHardModeOn)
+            {
+                Health = _health * 2;
+                _scoreValue *= 2;
+            }
+            else
+            {
+                Health = _health;
+                _scoreValue *= 1;
+            }
+        }
 
         int randomInt = Random.Range(0, 5); //CHGANGE TO 5!!!!
 
@@ -83,7 +98,10 @@ public class Enemy : MonoBehaviour, IDamagable
 
         if (Health < 1)
         {
-            //Update Player score
+            if (_player != null)
+            {
+                _player.UpdateScore(_scoreValue);
+            }
 
             if (_canSpawnPrefab)
             {
@@ -104,7 +122,7 @@ public class Enemy : MonoBehaviour, IDamagable
             if (hit != null)
             {
                 Instantiate(_collisionPrefab, other.transform.position, Quaternion.identity);
-                Damage(_collisionDamage);
+                Damage(_collisionDamage);             
                 hit.Damage(_collisionDamage);
             }
         }

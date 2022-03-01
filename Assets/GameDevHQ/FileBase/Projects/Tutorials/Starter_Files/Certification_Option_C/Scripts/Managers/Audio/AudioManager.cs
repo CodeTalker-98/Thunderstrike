@@ -90,8 +90,6 @@ public class AudioManager : MonoBehaviour
         PlayerPrefs.SetFloat("Music Volume", _musicVolumePercent);
         PlayerPrefs.SetFloat("SFX Volume", _sfxVolumePercent);
         PlayerPrefs.Save();
-
-        Debug.Log("Saved Prefs");
     }
 
     public void PlaySound(AudioClip clip, Vector3 pos)

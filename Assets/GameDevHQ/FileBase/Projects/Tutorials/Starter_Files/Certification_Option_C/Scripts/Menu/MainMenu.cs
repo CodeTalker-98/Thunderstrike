@@ -15,6 +15,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Slider _brightnessSlider;
     [SerializeField] private Slider[] _volumeSliders;
 
+    private float _brightness;
+
     private MusicManager _musicManager;
 
     private void Start()
@@ -24,9 +26,15 @@ public class MainMenu : MonoBehaviour
 
     private void Init()
     {
+        bool isHardModeOn = (PlayerPrefs.GetInt("Hard Mode") == 1) ? true : false;
+        _hardModeToggle.isOn = isHardModeOn;
+
         _volumeSliders[0].value = AudioManager.instance.GetMasterVolumePercent();
         _volumeSliders[1].value = AudioManager.instance.GetMusicVolumePercent();
         _volumeSliders[2].value = AudioManager.instance.GetSFXVolumePercent();
+
+        _brightness = PlayerPrefs.GetFloat("Brightness Value", 1.0f);
+        _brightnessSlider.value = _brightness;
 
         _musicManager = GameObject.Find("Audio Manager").GetComponent<MusicManager>();
     }
@@ -56,7 +64,8 @@ public class MainMenu : MonoBehaviour
 
     public void UpdateHardMode(bool isOn)
     {
-
+        PlayerPrefs.SetInt("Hard Mode", (isOn) ? 1 : 0);
+        PlayerPrefs.Save();
     }
 
     public void UpdateMasterVolume(float value)
@@ -77,9 +86,7 @@ public class MainMenu : MonoBehaviour
 
     public void UpdateBrightness(float value)
     {
-        //Save value to load in to next scene
         PlayerPrefs.SetFloat("Brightness Value", value);
         PlayerPrefs.Save();
     }
-
 }

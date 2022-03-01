@@ -29,6 +29,7 @@ public class Player : MonoBehaviour, IDamagable
     private void Start()
     {
         Init();
+        //update ui score, health, weapon
     }
 
     private void Init()
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour, IDamagable
     private void Update()
     {
         Debug.Log("Health: " + Health);
+        Debug.Log("Score: " + _score);
     }
 
     public void Damage(int damageAmount)
@@ -56,12 +58,19 @@ public class Player : MonoBehaviour, IDamagable
         else
         {
             Health -= damageAmount;
+            //update ui
         }
 
         if (Health < 1)
         {
             _isDead = true;
             Instantiate(_deathPrefab, transform.position, Quaternion.identity);
+            
+            if (_score > -1)
+            {
+                UpdateScore((-_score / 2));
+            }
+
             this.gameObject.SetActive(false);
         }
     }
@@ -90,5 +99,12 @@ public class Player : MonoBehaviour, IDamagable
         _shieldPrefab.SetActive(false);
         _invincibilityPrefab.SetActive(true);
         //Do something with a shader to make it like Mario Kart Invincibility??
+    }
+
+    public void UpdateScore(int scoreValue)
+    {
+        _score += scoreValue;
+
+        //update ui
     }
 }

@@ -16,6 +16,18 @@ public class EnemyMovement : MonoBehaviour
 
     private void Init()
     {
+        if (GameManager.instance != null)
+        {
+            if (GameManager.instance.isHardModeOn)
+            {
+                _movementSpeed *= 1.5f;
+            }
+            else
+            {
+                _movementSpeed *= 1.0f;
+            }
+        }
+
         _direction = Vector3.left;
     }
 
@@ -32,13 +44,6 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        //if (this.gameObject.transform.parent != null)
-        //{
-        //    Destroy(transform.parent.gameObject);
-        //}
-        //else
-        //{
-            Destroy(this.gameObject);
-        //}
+        Destroy(this.gameObject);
     }
 }
