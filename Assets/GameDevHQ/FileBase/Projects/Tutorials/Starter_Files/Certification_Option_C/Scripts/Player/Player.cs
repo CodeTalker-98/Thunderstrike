@@ -12,29 +12,39 @@ public class Player : MonoBehaviour, IDamagable
     [SerializeField] private bool _canEnableInvincibility = false;
     [SerializeField] private bool _isDead = false;
     [SerializeField] private int _score = 0;
-    //Negative score for deathv
 
     [Header("Prefabs")]
     [SerializeField] private GameObject _shieldPrefab;
     [SerializeField] private GameObject _invincibilityPrefab;
     [SerializeField] private GameObject _deathPrefab;
 
+    private int _maxHealth = 5;
+
+    private UIManager _uiManager;
+
     public int Health { get; set; }
 
     private void Awake()
     {
-        
+        _uiManager = GameObject.Find("UI").GetComponent<UIManager>();
     }
 
     private void Start()
     {
         Init();
-        //update ui score, health, weapon
+        UIReset();
     }
 
     private void Init()
     {
         Health = _health;
+    }
+
+    private void UIReset()
+    {
+        _uiManager.DisplayScore(_score);
+        _uiManager.DisplayHealth(Health, _maxHealth);
+        _uiManager.DisplayWeaponName(Health);
     }
 
     private void Update()
@@ -58,7 +68,7 @@ public class Player : MonoBehaviour, IDamagable
         else
         {
             Health -= damageAmount;
-            //update ui
+            _uiManager.DisplayHealth(Health, _maxHealth);
         }
 
         if (Health < 1)
@@ -77,9 +87,10 @@ public class Player : MonoBehaviour, IDamagable
 
     public void ChangeWeapon()
     {
-        if (Health < 5)
+        if (Health < _maxHealth)
         {
             Health ++;
+            _uiManager.DisplayHealth(Health, _maxHealth);
         }
     }
 
@@ -104,7 +115,18 @@ public class Player : MonoBehaviour, IDamagable
     public void UpdateScore(int scoreValue)
     {
         _score += scoreValue;
+        _uiManager.DisplayScore(_score);
+    }
 
-        //update ui
+    private void OnEnable()
+    {
+        //reset health, score, bools
+        //reset ui score, health, weapon
+        //Reset Wave #???
+    }
+
+    private void PlayerStatReset()
+    {
+        //reset scores and bools, health too Health = _health
     }
 }

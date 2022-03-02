@@ -5,11 +5,16 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [Header("Debug")]
+    [SerializeField] private int _waveNumber = 0;
     [SerializeField] private float _brightness;
 
-    public bool isHardModeOn { get; private set; }
+    private bool _levelComplete = false;
+
+    private int _highScore = 0;
 
     private Light _directionalLight;
+
+    public bool isHardModeOn { get; private set; }
 
     public static GameManager instance;
 
@@ -25,6 +30,7 @@ public class GameManager : MonoBehaviour
 
             isHardModeOn = (PlayerPrefs.GetInt("Hard Mode") == 1 ? true : false);
             _brightness = PlayerPrefs.GetFloat("Brightness Value", 1.0f);
+            //get high score
         }
     }
 

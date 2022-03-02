@@ -741,6 +741,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0d49633be4342d43978d4f318bbea32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scoreText: {fileID: 2014714654}
+  _highScoreText: {fileID: 2081829235}
+  _weaponNameText: {fileID: 1657092828}
+  _healthBarFill: {fileID: 1525554947}
 --- !u!1 &454794053
 GameObject:
   m_ObjectHideFlags: 0

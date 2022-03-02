@@ -1,18 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("UI Elements")]
+    [SerializeField] private Text _scoreText;
+    [SerializeField] private Text _highScoreText;
+    [SerializeField] private Text _weaponNameText;
+    [SerializeField] private string[] _weapons;
+    [SerializeField] private Image _healthBarFill;
+
+    public void DisplayScore(int value)
     {
-        
+        _scoreText.text = value.ToString().PadLeft(7, '0');
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DisplayHealth(int health, int maxHealth)
     {
-        
+        _healthBarFill.fillAmount = health / maxHealth;
+    }
+
+    public void DisplayWeaponName(int index)
+    {
+        _weaponNameText.text = _weapons[index];
     }
 }
