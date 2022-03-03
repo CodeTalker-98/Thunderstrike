@@ -21,7 +21,10 @@ public class PlayerShoot : MonoBehaviour
 
     private void FixedUpdate()
     {
-        ShootProjectile(_bulletPrefab[(_prefabIndex - 1)]);
+        if (_prefabIndex > 0)
+        {
+            ShootProjectile(_bulletPrefab[(_prefabIndex - 1)]);
+        }
     }
 
     private void ShootProjectile(GameObject projectile)

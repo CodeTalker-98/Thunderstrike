@@ -69,6 +69,7 @@ public class Player : MonoBehaviour, IDamagable
         {
             Health -= damageAmount;
             _uiManager.DisplayHealth(Health, _maxHealth);
+            _uiManager.DisplayWeaponName(Health);
         }
 
         if (Health < 1)
@@ -81,6 +82,13 @@ public class Player : MonoBehaviour, IDamagable
                 UpdateScore((-_score / 2));
             }
 
+            //play death sound
+
+            if (GameManager.instance != null)
+            {
+                GameManager.instance.GameOverScreen();
+            }
+
             this.gameObject.SetActive(false);
         }
     }
@@ -91,6 +99,7 @@ public class Player : MonoBehaviour, IDamagable
         {
             Health ++;
             _uiManager.DisplayHealth(Health, _maxHealth);
+            _uiManager.DisplayWeaponName(Health);
         }
     }
 
@@ -127,6 +136,6 @@ public class Player : MonoBehaviour, IDamagable
 
     private void PlayerStatReset()
     {
-        //reset scores and bools, health too Health = _health
+        //reset scores and bools, health too Health = _health, is dead = false;
     }
 }

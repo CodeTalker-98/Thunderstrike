@@ -1,13 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Screens")]
+    [SerializeField] private GameObject _pauseScreen;
+    [SerializeField] private GameObject _winScreen;
+    [SerializeField] private GameObject _gameOverScreen;
+    [SerializeField] private GameObject _waveInfoScreen;
+  
     [Header("Debug")]
     [SerializeField] private int _waveNumber = 0;
     [SerializeField] private float _brightness;
 
+    private bool _checkpointReached = false;
     private bool _levelComplete = false;
 
     private int _highScore = 0;
@@ -51,6 +59,42 @@ public class GameManager : MonoBehaviour
         if (_directionalLight != null)
         {
             _directionalLight.intensity = _brightness;
+        }
+    }
+
+    public void GameOverScreen()
+    {
+        _gameOverScreen.SetActive(true);
+    }
+
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0.0f;
+        _pauseScreen.SetActive(true);
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1.0f;
+        _pauseScreen.SetActive(false);
+    }
+
+    public void Retry()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.buildIndex);
+    }
+
+    public void RetryCheckpoint()
+    {
+        if (_checkpointReached)
+        {
+            _waveNumber = 9;
         }
     }
 }

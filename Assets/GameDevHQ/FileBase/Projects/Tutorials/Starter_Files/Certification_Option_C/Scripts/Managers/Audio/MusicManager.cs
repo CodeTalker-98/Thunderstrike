@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour
 {
@@ -25,4 +25,6 @@ public class MusicManager : MonoBehaviour
     {
         AudioManager.instance.PlayMusic(_music[1], _fade);
     }
+
+    //make it work off of build index to play correct songs
 }

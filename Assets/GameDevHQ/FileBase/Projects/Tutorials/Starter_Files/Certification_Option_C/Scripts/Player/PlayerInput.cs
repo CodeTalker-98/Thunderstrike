@@ -7,6 +7,8 @@ public class PlayerInput : MonoBehaviour
     private PlayerMovement _playerMovement;
     private GameInputActions _inputs;
 
+    private bool _isPaused = false;
+
     private void Start()
     {
         Init();
@@ -28,7 +30,19 @@ public class PlayerInput : MonoBehaviour
 
     private void Pause_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        //Pause Game from game manager??
+        if (GameManager.instance != null)
+        {
+            _isPaused = !_isPaused;
+
+            if (_isPaused)
+            {
+                GameManager.instance.Pause();
+            }
+            else
+            {
+                GameManager.instance.Resume();
+            }
+        }
     }
 
     private void FixedUpdate()

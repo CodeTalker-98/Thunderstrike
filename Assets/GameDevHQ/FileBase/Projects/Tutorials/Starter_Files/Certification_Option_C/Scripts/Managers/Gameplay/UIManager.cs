@@ -17,13 +17,16 @@ public class UIManager : MonoBehaviour
         _scoreText.text = value.ToString().PadLeft(7, '0');
     }
 
-    public void DisplayHealth(int health, int maxHealth)
+    public void DisplayHealth(float health, float maxHealth)
     {
         _healthBarFill.fillAmount = health / maxHealth;
     }
 
     public void DisplayWeaponName(int index)
     {
-        _weaponNameText.text = _weapons[index];
+        if (index > 0)
+        {
+            _weaponNameText.text = _weapons[index - 1];
+        }
     }
 }
