@@ -19,6 +19,26 @@ public class PlayerShoot : MonoBehaviour
 
     private int _prefabIndex = 1;
 
+    private Player _player;
+
+    private void Start()
+    {
+        Init();
+    }
+
+    private void Init()
+    {
+        _player = GetComponent<Player>();
+    }
+
+    private void Update()
+    {
+        if (_player != null)
+        {
+            _prefabIndex = _player.Health;
+        }
+    }
+
     private void FixedUpdate()
     {
         if (_prefabIndex > 0)

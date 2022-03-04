@@ -11,17 +11,12 @@ public class MusicManager : MonoBehaviour
     [Header("Music")]
     [SerializeField] private AudioClip[] _music;
 
-    private void Start()
-    {
-        Init();
-    }
-
-    private void Init()
+    public void MenuMusic()
     {
         AudioManager.instance.PlayMusic(_music[0], _fade);
     }
 
-    public void ChangeMusic()
+    public void GameplayMusic()
     {
         AudioManager.instance.PlayMusic(_music[1], _fade);
     }

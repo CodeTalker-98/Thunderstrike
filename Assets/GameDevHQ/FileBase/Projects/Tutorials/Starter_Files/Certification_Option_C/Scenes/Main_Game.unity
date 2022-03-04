@@ -762,6 +762,8 @@ MonoBehaviour:
   - .50 BMG       M33 BALL
   - .50 BMG      M903 SLAP
   _healthBarFill: {fileID: 1525554947}
+  _waveNumberText: {fileID: 1089437433}
+  _waveInfoText: {fileID: 1869388165}
 --- !u!1 &454794053
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,7 +1253,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 519663933}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1601117744}
+        m_MethodName: ReturnToMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &519663933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6477,7 +6490,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 653998460}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1601117744}
+        m_MethodName: Resume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &653998460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6772,7 +6796,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 772331753}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1601117744}
+        m_MethodName: ReturnToMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &772331753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6918,6 +6953,31 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 787162803}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &795228256 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 5dc75e6b038c946aaa4a76ea9b83b3ac,
+    type: 3}
+  m_PrefabInstance: {fileID: 946278344}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &795228257
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 795228256}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7af6f71d8a9fd8b4681ed0aba4fdb473, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &812301394
 GameObject:
   m_ObjectHideFlags: 0
@@ -7222,6 +7282,38 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5dc75e6b038c946aaa4a76ea9b83b3ac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 5dc75e6b038c946aaa4a76ea9b83b3ac, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 5dc75e6b038c946aaa4a76ea9b83b3ac, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 5dc75e6b038c946aaa4a76ea9b83b3ac, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 5dc75e6b038c946aaa4a76ea9b83b3ac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 5dc75e6b038c946aaa4a76ea9b83b3ac, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 5dc75e6b038c946aaa4a76ea9b83b3ac, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 5dc75e6b038c946aaa4a76ea9b83b3ac, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 5dc75e6b038c946aaa4a76ea9b83b3ac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
@@ -18170,6 +18262,10 @@ MonoBehaviour:
   _firingOffset: {fileID: 1239855776}
   _gunSounds:
   - {fileID: 8300000, guid: fa470fb13ff7481498e91561a9dd7a04, type: 3}
+  - {fileID: 8300000, guid: fa470fb13ff7481498e91561a9dd7a04, type: 3}
+  - {fileID: 8300000, guid: fa470fb13ff7481498e91561a9dd7a04, type: 3}
+  - {fileID: 8300000, guid: fa470fb13ff7481498e91561a9dd7a04, type: 3}
+  - {fileID: 8300000, guid: fa470fb13ff7481498e91561a9dd7a04, type: 3}
 --- !u!114 &1477206600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18182,7 +18278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa5f3e2e24163d940b35ccaa85ecb0f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 1
+  _health: 5
   _canEnableShield: 0
   _canEnableInvincibility: 0
   _isDead: 0
@@ -18408,6 +18504,23 @@ MonoBehaviour:
   _winScreen: {fileID: 1580232956}
   _gameOverScreen: {fileID: 1301386741}
   _waveInfoScreen: {fileID: 732649687}
+  _waveInfo:
+  - a
+  - b
+  - c
+  - d
+  - e
+  - f
+  - g
+  - h
+  - i
+  - j
+  - k
+  - l
+  - m
+  - n
+  - o
+  _waveScreenTime: 5
   _waveNumber: 0
   _brightness: 0
 --- !u!1 &1610913117
@@ -19226,7 +19339,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: This is where info about the upcoming wavewill be displayed
+  m_Text: This is where info about the upcoming wave will be displayed
 --- !u!222 &1869388166
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24540,7 +24653,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1962393058}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1601117744}
+        m_MethodName: Retry
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1962393058
 MonoBehaviour:
   m_ObjectHideFlags: 0

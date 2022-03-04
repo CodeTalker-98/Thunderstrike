@@ -37,12 +37,14 @@ public class MainMenu : MonoBehaviour
         _brightnessSlider.value = _brightness;
 
         _musicManager = GameObject.Find("Audio Manager").GetComponent<MusicManager>();
+
+        _musicManager.MenuMusic();
     }
 
     public void Play()
     {
         SceneManager.LoadScene(1);
-        _musicManager.ChangeMusic();
+        _musicManager.GameplayMusic();
     }
 
     public void OptionsMenu()

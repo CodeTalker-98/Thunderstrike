@@ -12,6 +12,25 @@ public class UIManager : MonoBehaviour
     [SerializeField] private string[] _weapons;
     [SerializeField] private Image _healthBarFill;
 
+    [Header("Screen Elements")]
+    [SerializeField] private Text _waveNumberText;
+    [SerializeField] private Text _waveInfoText;
+
+    private void OnEnable()
+    {
+        UpdateWaveInfo();
+    }
+
+    public void UpdateWaveInfo()
+    {
+        if (GameManager.instance != null)
+        {
+            int waveNumber = GameManager.instance.SendWaveNumber();
+            _waveNumberText.text = "Wave: " + waveNumber.ToString();
+            _waveInfoText.text = GameManager.instance.SendWaveInfo(waveNumber);
+        }
+    }
+
     public void DisplayScore(int value)
     {
         _scoreText.text = value.ToString().PadLeft(7, '0');

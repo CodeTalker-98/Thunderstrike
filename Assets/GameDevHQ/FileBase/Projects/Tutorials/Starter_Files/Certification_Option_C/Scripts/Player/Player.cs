@@ -129,13 +129,16 @@ public class Player : MonoBehaviour, IDamagable
 
     private void OnEnable()
     {
-        //reset health, score, bools
-        //reset ui score, health, weapon
-        //Reset Wave #???
+        PlayerStatReset();
+        UIReset();
     }
 
     private void PlayerStatReset()
     {
-        //reset scores and bools, health too Health = _health, is dead = false;
+        _isDead = false;
+        Health = _health;
+        _canEnableShield = false;
+        _canEnableInvincibility = false;
+        _score = 0;
     }
 }
