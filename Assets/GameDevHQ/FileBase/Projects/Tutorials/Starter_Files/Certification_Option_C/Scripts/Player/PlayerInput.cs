@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
+    private bool _isPaused = false;
+
+    private PlayerAnimation _playerAnimation;
     private PlayerMovement _playerMovement;
     private GameInputActions _inputs;
-
-    private bool _isPaused = false;
 
     private void Start()
     {
@@ -16,6 +17,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Init()
     {
+        _playerAnimation = GetComponentInChildren<PlayerAnimation>();
         _playerMovement = GetComponentInChildren<PlayerMovement>();
 
         _inputs = new GameInputActions();
@@ -56,6 +58,7 @@ public class PlayerInput : MonoBehaviour
         {
             Vector2 input = _inputs.Player.Movement.ReadValue<Vector2>();
             _playerMovement.CalculateMovement(input);
+            _playerAnimation.CalculateAnimation(input);
         }
     }
 }
