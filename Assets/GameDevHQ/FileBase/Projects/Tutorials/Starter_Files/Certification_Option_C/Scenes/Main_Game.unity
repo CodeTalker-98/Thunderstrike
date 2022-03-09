@@ -195,6 +195,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 940221}
   m_CullTransparentMesh: 0
+--- !u!1001 &53572339
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8518703493151351721, guid: 871d6199570cdd546920b7781d1eab7b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518703493151351721, guid: 871d6199570cdd546920b7781d1eab7b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518703493151351721, guid: 871d6199570cdd546920b7781d1eab7b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518703493151351721, guid: 871d6199570cdd546920b7781d1eab7b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518703493151351721, guid: 871d6199570cdd546920b7781d1eab7b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518703493151351721, guid: 871d6199570cdd546920b7781d1eab7b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518703493151351721, guid: 871d6199570cdd546920b7781d1eab7b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518703493151351721, guid: 871d6199570cdd546920b7781d1eab7b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518703493151351721, guid: 871d6199570cdd546920b7781d1eab7b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518703493151351721, guid: 871d6199570cdd546920b7781d1eab7b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518703493151351721, guid: 871d6199570cdd546920b7781d1eab7b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518703493151351727, guid: 871d6199570cdd546920b7781d1eab7b,
+        type: 3}
+      propertyPath: m_Name
+      value: Zeppelin
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 871d6199570cdd546920b7781d1eab7b, type: 3}
 --- !u!1 &158635756
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,6 +822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreText: {fileID: 2014714654}
+  _finalScoreText: {fileID: 363931882}
   _highScoreText: {fileID: 2081829235}
   _weaponNameText: {fileID: 1657092828}
   _weapons:
@@ -18284,7 +18354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa5f3e2e24163d940b35ccaa85ecb0f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 3
+  _health: 5
   _canEnableShield: 0
   _canEnableInvincibility: 0
   _isDead: 0
@@ -18538,8 +18608,9 @@ MonoBehaviour:
   - m
   - n
   - o
+  - p
   _waveScreenTime: 5
-  _waveNumber: 0
+  _waveNumber: 16
   _brightness: 0
 --- !u!1 &1610913117
 GameObject:

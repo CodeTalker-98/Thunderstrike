@@ -103,6 +103,9 @@ public class GameManager : MonoBehaviour
                 PlayerPrefs.SetInt("Highscore", _highScore);
                 PlayerPrefs.Save();
             }
+
+            _uiManager.DisplayFinalScore(_score, _highScore);
+
         }
     }
 
@@ -147,15 +150,18 @@ public class GameManager : MonoBehaviour
 
     public void NextWave()
     {
-        //pause spawn manager
-        _waveNumber++;
-        _uiManager.UpdateWaveInfo();
-        //_nextWave = true;
-
-        if (_nextWave)
+        if (_waveNumber < 15)
         {
-            _nextWave = false;
-            StartCoroutine(ShowWaveInfoScreen());
+            //pause spawn manager
+            _waveNumber++;
+            _uiManager.UpdateWaveInfo();
+            //_nextWave = true;
+
+            if (_nextWave)
+            {
+                _nextWave = false;
+                StartCoroutine(ShowWaveInfoScreen());
+            }
         }
     }
 
@@ -166,12 +172,17 @@ public class GameManager : MonoBehaviour
 
     public string SendWaveInfo(int index)
     {
-        if (index > 0)
+        if (index > 0 && index < 16)
         {
             return _waveInfo[index - 1];
         }
 
         return null;
+    }
+
+    public void ManualWaveNumberIncrement()
+    {
+        _waveNumber++; // Call on final boss death
     }
 
     IEnumerator ShowWaveInfoScreen()

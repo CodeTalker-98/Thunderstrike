@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     [Header("UI Elements")]
     [SerializeField] private Text _scoreText;
+    [SerializeField] private Text _finalScoreText;
     [SerializeField] private Text _highScoreText;
     [SerializeField] private Text _weaponNameText;
     [SerializeField] private string[] _weapons;
@@ -39,6 +40,12 @@ public class UIManager : MonoBehaviour
     public void DisplayHealth(float health, float maxHealth)
     {
         _healthBarFill.fillAmount = health / maxHealth;
+    }
+
+    public void DisplayFinalScore(int value, int highscore)
+    {
+        _finalScoreText.text = value.ToString().PadLeft(7, '0');
+        _highScoreText.text = highscore.ToString().PadLeft(7, '0');
     }
 
     public void DisplayWeaponName(int index)
