@@ -25,4 +25,9 @@ public class PlayerMovement : MonoBehaviour
 
         transform.Translate(velocity * Time.deltaTime);
     }
+
+    public float CurrentYPosition()
+    {
+        return transform.position.y;
+    }
 }
