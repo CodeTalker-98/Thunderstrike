@@ -13,6 +13,8 @@ public class EnemyShoot : MonoBehaviour
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private Transform _firingOffset;
 
+    private bool _canUpdateLook = false;
+
     private float _cycleTime = -1.0f;
 
     private Vector3 _aimDirection;
@@ -47,7 +49,10 @@ public class EnemyShoot : MonoBehaviour
 
     private void Update()
     {
-        SetDirection();
+        if (!_canUpdateLook)
+        {
+            SetDirection();
+        }
     }
 
     private void SetDirection()
@@ -69,6 +74,12 @@ public class EnemyShoot : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void UpdateLookDirection(Vector3 lookDirection)
+    {
+        _canUpdateLook = true;
+        _aimDirection = lookDirection;
     }
 
     private void FixedUpdate()

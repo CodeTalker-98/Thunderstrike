@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IDamagable
+public abstract class Enemy : MonoBehaviour, IDamagable
 {
     [Header("Adjustable Values")]
     [SerializeField] protected int _health = 1;
@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour, IDamagable
         Init();
     }
 
-    private void Init()
+    public virtual void Init()
     {
         if (GameManager.instance != null)
         {
@@ -92,7 +92,7 @@ public class Enemy : MonoBehaviour, IDamagable
         }
     }
 
-    public void Damage(int damageAmount)
+    public virtual void Damage(int damageAmount)
     {
         Health -= damageAmount;
 

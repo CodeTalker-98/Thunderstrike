@@ -12,11 +12,20 @@ public class NighthawkMovement : MonoBehaviour
     private Vector3 _direction = Vector3.zero;
     private Vector3 _spawnPos = Vector3.zero;
 
+    private Animator _anim;
+
+    private EnemyShoot _enemyShoot;
+    private NighthawkAI _nighthawkAI;
+    private NighthawkBombDrop _nighthawkBombDrop;
     private PlayerMovement _playerMovement;
 
     private void Awake()
     {
-         _playerMovement = GameObject.Find("/Player Manager/Player").GetComponent<PlayerMovement>();
+        _anim = GetComponentInChildren<Animator>();
+        _playerMovement = GameObject.Find("/Player Manager/Player").GetComponent<PlayerMovement>();
+        _enemyShoot = GetComponentInChildren<EnemyShoot>();
+        _nighthawkAI = GetComponent<NighthawkAI>();
+        _nighthawkBombDrop = GetComponentInChildren<NighthawkBombDrop>();
     }
 
     private void Start()
@@ -56,6 +65,11 @@ public class NighthawkMovement : MonoBehaviour
     {
         _isChangingDirection = true;
 
+        if (_nighthawkAI != null)
+        {
+            _nighthawkAI.ResetVisibility();
+        }
+
         if (_playerMovement != null && _isChangingDirection)
         {
             DetermineDirection();
@@ -67,28 +81,41 @@ public class NighthawkMovement : MonoBehaviour
         _isChangingDirection = false;
 
         float xPos;
+        bool bombDrop;
 
+        if (_enemyShoot != null)
+        {
+            if (transform.position.x < 0)
+            {
+                xPos = -42.0f;
+                _direction = Vector3.right;
+                _anim.SetBool("FlyRight", true);
+                _enemyShoot.UpdateLookDirection(Vector3.right);
+            }
+            else
+            {
+                xPos = 42.0f;
+                _direction = Vector3.left;
+                _anim.SetBool("FlyRight", false);
+                _enemyShoot.UpdateLookDirection(Vector3.left);
+            }
 
-        if (transform.position.x < 0)
-        {
-            xPos = -42.0f;
-            _direction = Vector3.right;
-        }
-        else
-        {
-            xPos = 42.0f;
-            _direction = Vector3.left;
-        }
+            if (_playerMovement.CurrentYPosition() < 9.0f)
+            {
+                _spawnPos = new Vector3(xPos, _playerMovement.CurrentYPosition() + 4.0f, 0.0f);
+                transform.position = _spawnPos;
+                _movementSpeed = 20.0f;
+                bombDrop = true;
+            }
+            else
+            {
+                _spawnPos = new Vector3(xPos, _playerMovement.CurrentYPosition(), 0.0f);
+                transform.position = _spawnPos;
+                _movementSpeed = 40.0f;
+                bombDrop = false;
+            }
 
-        if (_playerMovement.CurrentYPosition() < 9.0f)
-        {
-            _spawnPos = new Vector3(xPos, _playerMovement.CurrentYPosition() + 4.0f, 0.0f);
-            transform.position = _spawnPos;
-        }
-        else
-        {
-            _spawnPos = new Vector3(xPos, _playerMovement.CurrentYPosition(), 0.0f);
-            transform.position = _spawnPos;
+            _nighthawkBombDrop.enabled = bombDrop;
         }
     }
 }
