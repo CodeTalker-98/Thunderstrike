@@ -10,10 +10,14 @@ public abstract class Enemy : MonoBehaviour, IDamagable
     [SerializeField] protected int _scoreValue = 500;
     [SerializeField] protected float _colorChangeTime = 1.0f;
     [SerializeField] protected Color[] _colors;
+    [SerializeField] protected float _xStart = 45.0f;
+    [SerializeField] protected float _yStart = 0.0f;
 
     [Header("Debug")]
     [SerializeField] protected bool _canSpawnPrefab = false;
     [SerializeField] protected bool _isBoss = false;
+    [SerializeField] protected bool _isBomber = false;
+    [SerializeField] protected bool _cantRandomize = false;
 
     [Header("Prefabs")]
     [SerializeField] protected GameObject _powerupPrefab;
@@ -33,7 +37,6 @@ public abstract class Enemy : MonoBehaviour, IDamagable
     private void Awake()
     {
         _renderer = this.gameObject.transform.GetChild(0).GetComponent<MeshRenderer>();
-        _player = GameObject.Find("/Player Manager/Player").GetComponent<Player>();
     }
 
     private void Start()
@@ -57,7 +60,29 @@ public abstract class Enemy : MonoBehaviour, IDamagable
             }
         }
 
-        int randomInt = Random.Range(0, 5); //CHGANGE TO 5!!!!
+        if (!_isBoss)
+        {
+            if (_cantRandomize)
+            {
+                _yStart = transform.position.y;
+            }
+            else
+            {
+                if (_isBomber)
+                {
+                    _yStart = Random.Range(6.0f, 12.0f);
+                }
+                else
+                {
+                    _yStart = Random.Range(-15.0f, 12.0f);
+                }
+            }
+
+            transform.position = new Vector3(_xStart, _yStart, 0.0f);
+
+        }
+
+        int randomInt = Random.Range(0, 5);
 
         if (randomInt == 0 && !_isBoss)
         {
@@ -98,6 +123,8 @@ public abstract class Enemy : MonoBehaviour, IDamagable
 
         if (Health < 1)
         {
+            _player = GameObject.Find("/Player Manager/Player").GetComponent<Player>();
+
             if (_player != null)
             {
                 _player.UpdateScore(_scoreValue);

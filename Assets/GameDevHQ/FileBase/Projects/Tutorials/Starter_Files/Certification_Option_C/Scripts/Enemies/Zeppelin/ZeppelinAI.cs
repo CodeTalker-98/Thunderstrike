@@ -5,18 +5,18 @@ using UnityEngine;
 public class ZeppelinAI : Enemy
 {
     [Header("VFX Prefabs")]
-    [SerializeField] private GameObject _stageTwoDamaagePrefab;
-    [SerializeField] private GameObject _stageThreeDamaagePrefab;
+    [SerializeField] private GameObject _stageTwoDamagePrefab;
+    [SerializeField] private GameObject _stageThreeDamagePrefab;
 
     [Header("Boss Debug")]
     [SerializeField] private Stage _stage;
 
-    private bool _secondStage;
-    private bool _thirdStage;
-
     private int _maxHealth;
 
+    private CapsuleCollider _capsuleCollider;
+
     private ZeppelinMovement _zeppelinMovement;
+    private ZeppelinShoot _zeppelinShoot;
 
     private enum Stage
     {
@@ -29,36 +29,38 @@ public class ZeppelinAI : Enemy
     {
         base.Init();
         _zeppelinMovement = GetComponent<ZeppelinMovement>();
+        _zeppelinShoot = GetComponentInChildren<ZeppelinShoot>();
         _maxHealth = Health;
         _stage = Stage.Basic;
+        _capsuleCollider = GetComponent<CapsuleCollider>();
+        _capsuleCollider.enabled = false;
     }
 
     private void Update()
     {
         SetStage();
-
-        Debug.Log("Stage: " + _stage);
     }
 
     private void SetStage()
     {
-        if (_zeppelinMovement != null)
+        if (_zeppelinMovement != null && _zeppelinShoot != null)
         {
             switch (_stage)
             {
                 case Stage.Basic:
                     _zeppelinMovement.BasicMovement();
-                    //Shoot phase 1
+                    _zeppelinShoot.BasicShoot();
                     break;
                 case Stage.Modified:
                     _zeppelinMovement.ModifiedMovement();
-                    //Instantiate damage 1
-                    //shoot phase 2
+                    _stageTwoDamagePrefab.SetActive(true);
+                    _capsuleCollider.enabled = true;
+                    _zeppelinShoot.ModifiedShoot();
                     break;
                 case Stage.Final:
                     _zeppelinMovement.FinalMovement();
-                    //Instantiate damage 2
-                    //shoot phase 3
+                    _stageThreeDamagePrefab.SetActive(true);
+                    _zeppelinShoot.FinalShoot();
                     break;
                 default:
                     break;
@@ -74,11 +76,11 @@ public class ZeppelinAI : Enemy
         {
             return;
         }
-        else if (Health < (_maxHealth * 0.66f) && Health >= (_maxHealth * 0.33f) /*&& _secondStage*/)
+        else if (Health < (_maxHealth * 0.66f) && Health >= (_maxHealth * 0.33f))
         {
             _stage = Stage.Modified;
         }
-        else if (Health < (_maxHealth * 0.33f) /*&& _thirdStage*/)
+        else if (Health < (_maxHealth * 0.33f))
         {
             _stage = Stage.Final;
         }

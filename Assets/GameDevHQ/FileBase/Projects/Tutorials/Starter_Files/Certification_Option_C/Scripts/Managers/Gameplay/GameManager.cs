@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     private bool _nextWave = false;
     private bool _checkpointReached = false;
     private bool _levelComplete = false;
+    private bool _levelBegin = false;
 
     private int _score;
     private int _highScore = 0;
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
     private WaitForSeconds _waveInfoScreenTime;
 
     public bool isHardModeOn { get; private set; }
+    public bool isDead = false;
 
     public static GameManager instance;
 
@@ -51,7 +53,9 @@ public class GameManager : MonoBehaviour
             _brightness = PlayerPrefs.GetFloat("Brightness Value", 1.0f);
             _highScore = PlayerPrefs.GetInt("Highscore", 0);
             _uiManager = GameObject.Find("UI").GetComponent<UIManager>();
+            _levelBegin = true;
             _nextWave = true;
+            isDead = false;
         }
     }
 
@@ -134,6 +138,7 @@ public class GameManager : MonoBehaviour
 
     public void Retry()
     {
+        isDead = false;
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.buildIndex);
     }
@@ -150,19 +155,19 @@ public class GameManager : MonoBehaviour
 
     public void NextWave()
     {
-        if (_waveNumber < 15)
-        {
-            //pause spawn manager
-            _waveNumber++;
-            _uiManager.UpdateWaveInfo();
-            //_nextWave = true;
+        //pause spawn manager
+        _uiManager.UpdateWaveInfo();
 
-            if (_nextWave)
-            {
-                _nextWave = false;
-                StartCoroutine(ShowWaveInfoScreen());
-            }
-        }
+        if (_nextWave)
+        {
+            _nextWave = false;
+            StartCoroutine(ShowWaveInfoScreen());
+        }       
+    }
+
+    public void SetNextWave()
+    {
+        _nextWave = true;
     }
 
     public int SendWaveNumber()
@@ -174,22 +179,37 @@ public class GameManager : MonoBehaviour
     {
         if (index > 0 && index < 16)
         {
-            return _waveInfo[index - 1];
+            return _waveInfo[index];
         }
 
         return null;
     }
 
-    public void ManualWaveNumberIncrement()
+    public void WaveNumberIncrement()
     {
-        _waveNumber++; // Call on final boss death
+        _waveNumber++; 
+
+        if (_waveNumber > 15)
+        {
+            _winScreen.SetActive(true);
+        }
     }
 
     IEnumerator ShowWaveInfoScreen()
     {
+        SpawnManager sm = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
+
+        sm.enabled = false;
         _waveInfoScreen.SetActive(true);
         yield return _waveInfoScreenTime;
         _waveInfoScreen.SetActive(false);
-        //Resume Spawn Manager
+        sm.enabled = true;
+        
+        if (!_levelBegin)
+        {
+            _waveNumber++;
+        }
+
+        _levelBegin = false;
     }
 }

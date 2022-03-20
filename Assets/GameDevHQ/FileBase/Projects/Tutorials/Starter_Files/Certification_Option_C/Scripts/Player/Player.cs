@@ -10,7 +10,6 @@ public class Player : MonoBehaviour, IDamagable
     [Header("Debug Values")]
     [SerializeField] private bool _canEnableShield = false;
     [SerializeField] private bool _canEnableInvincibility = false;
-    [SerializeField] private bool _isDead = false;
     [SerializeField] private int _score = 0;
 
     [Header("Prefabs")]
@@ -49,13 +48,13 @@ public class Player : MonoBehaviour, IDamagable
 
     private void Update()
     {
-        Debug.Log("Health: " + Health);
-        Debug.Log("Score: " + _score);
+        //Debug.Log("Health: " + Health);
+        //Debug.Log("Score: " + _score);
     }
 
     public void Damage(int damageAmount)
     {
-        if (_isDead || _canEnableInvincibility)
+        if (GameManager.instance.isDead || _canEnableInvincibility)
         {
             return;
         }
@@ -74,7 +73,7 @@ public class Player : MonoBehaviour, IDamagable
 
         if (Health < 1)
         {
-            _isDead = true;
+            GameManager.instance.isDead = true;
             Instantiate(_deathPrefab, transform.position, Quaternion.identity);
             
             if (_score > -1)
@@ -118,7 +117,6 @@ public class Player : MonoBehaviour, IDamagable
         _canEnableInvincibility = true;
         _shieldPrefab.SetActive(false);
         _invincibilityPrefab.SetActive(true);
-        //Do something with a shader to make it like Mario Kart Invincibility??
     }
 
     public void UpdateScore(int scoreValue)
@@ -129,13 +127,20 @@ public class Player : MonoBehaviour, IDamagable
 
     private void OnEnable()
     {
-        PlayerStatReset();
+        if(GameManager.instance != null)
+        {
+            if (GameManager.instance.isDead)
+            {
+                PlayerStatReset();
+            }
+        }
+
         UIReset();
     }
 
     private void PlayerStatReset()
     {
-        _isDead = false;
+        GameManager.instance.isDead = false;
         Health = _health;
         _canEnableShield = false;
         _canEnableInvincibility = false;

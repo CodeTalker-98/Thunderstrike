@@ -20,6 +20,4 @@ public class MusicManager : MonoBehaviour
     {
         AudioManager.instance.PlayMusic(_music[1], _fade);
     }
-
-    //make it work off of build index to play correct songs
 }

@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
         _moveDirection = new Vector3(input.x, input.y, 0.0f);
 
         float xClamp = Mathf.Clamp(transform.position.x, -25.0f, 25.0f);
-        float yClamp = Mathf.Clamp(transform.position.y, -15.0f, 13.0f);
+        float yClamp = Mathf.Clamp(transform.position.y, -15.0f, 12.0f);
 
         var velocity = _moveDirection * (_movementSpeed + Mathf.Sign(input.x) * _speedModifier);
 

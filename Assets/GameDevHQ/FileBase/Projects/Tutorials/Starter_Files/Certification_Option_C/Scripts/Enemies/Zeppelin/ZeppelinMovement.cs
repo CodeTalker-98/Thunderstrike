@@ -7,10 +7,7 @@ public class ZeppelinMovement : MonoBehaviour
     [Header("Adjustable Values")]
     [SerializeField] private float _movementSpeed = 10.0f;
 
-    [Header("Prefabs")]
-    [SerializeField] private Transform _start;
-
-    private bool _canMove = true;
+    private Transform _start;
 
     private Vector3 _target;
 
@@ -25,6 +22,7 @@ public class ZeppelinMovement : MonoBehaviour
     private void Init()
     {
         _player = GameObject.Find("/Player Manager/Player").GetComponent<Player>();
+        _start = GameObject.Find("/Position Holder/Zeppelin Start Position").GetComponent<Transform>();
     }
 
     private void SetTargetPosition()
@@ -41,7 +39,10 @@ public class ZeppelinMovement : MonoBehaviour
 
     public void BasicMovement()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _start.position, Time.deltaTime * _movementSpeed);
+        if (_start != null)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, _start.position, Time.deltaTime * _movementSpeed);
+        }
     }
 
     public void ModifiedMovement()

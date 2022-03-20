@@ -26,9 +26,10 @@ public class UIManager : MonoBehaviour
     {
         if (GameManager.instance != null)
         {
-            int waveNumber = GameManager.instance.SendWaveNumber();
+            int waveNumber = GameManager.instance.SendWaveNumber() + 1;
             _waveNumberText.text = "Wave: " + waveNumber.ToString();
-            _waveInfoText.text = GameManager.instance.SendWaveInfo(waveNumber);
+            _waveInfoText.text = GameManager.instance.SendWaveInfo(waveNumber - 1);
+            Debug.Log(_waveInfoText.text);
         }
     }
 
