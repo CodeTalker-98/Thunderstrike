@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
     private bool _nextWave = false;
     private bool _checkpointReached = false;
     private bool _levelComplete = false;
-    private bool _levelBegin = false;
 
     private int _score;
     private int _highScore = 0;
@@ -31,6 +30,7 @@ public class GameManager : MonoBehaviour
     private Light _directionalLight;
 
     private UIManager _uiManager;
+    private SpawnManager _spawnManager;
 
     private WaitForSeconds _waveInfoScreenTime;
 
@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
             _brightness = PlayerPrefs.GetFloat("Brightness Value", 1.0f);
             _highScore = PlayerPrefs.GetInt("Highscore", 0);
             _uiManager = GameObject.Find("UI").GetComponent<UIManager>();
-            _levelBegin = true;
+            _spawnManager = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
             _nextWave = true;
             isDead = false;
         }
@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
     {
         LightSetup();
         _waveInfoScreenTime = new WaitForSeconds(_waveScreenTime);
+        _spawnManager.GetCurrentWave();
     }
 
     private void LightSetup()
@@ -111,6 +112,8 @@ public class GameManager : MonoBehaviour
             _uiManager.DisplayFinalScore(_score, _highScore);
 
         }
+
+        _waveNumber = _spawnManager.GetCurrentWave();
     }
 
     public void GameOverScreen()
@@ -187,8 +190,6 @@ public class GameManager : MonoBehaviour
 
     public void WaveNumberIncrement()
     {
-        _waveNumber++; 
-
         if (_waveNumber > 15)
         {
             _winScreen.SetActive(true);
@@ -197,19 +198,10 @@ public class GameManager : MonoBehaviour
 
     IEnumerator ShowWaveInfoScreen()
     {
-        SpawnManager sm = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
-
-        sm.enabled = false;
+        _spawnManager.enabled = false;
         _waveInfoScreen.SetActive(true);
         yield return _waveInfoScreenTime;
         _waveInfoScreen.SetActive(false);
-        sm.enabled = true;
-        
-        if (!_levelBegin)
-        {
-            _waveNumber++;
-        }
-
-        _levelBegin = false;
+        _spawnManager.enabled = true;
     }
 }

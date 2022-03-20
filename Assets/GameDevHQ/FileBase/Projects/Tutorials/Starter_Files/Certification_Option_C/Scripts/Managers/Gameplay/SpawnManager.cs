@@ -14,7 +14,9 @@ public class SpawnManager : MonoBehaviour
 
     private bool _waveStart = true;
 
-    private int _currentWave;
+    private int _currentWave = 0;
+
+    private GameObject _previousWave;
 
     private WaitForSeconds _enemySpawnTime;
     private WaitForSeconds _nextWaveTime;
@@ -28,7 +30,6 @@ public class SpawnManager : MonoBehaviour
     {
         _enemySpawnTime = new WaitForSeconds(_enemySpawnBuffer);
         _nextWaveTime = new WaitForSeconds(_nextWaveBuffer);
-        _currentWave = GameManager.instance.SendWaveNumber();
 
         if (GameManager.instance != null)
         {
@@ -48,6 +49,11 @@ public class SpawnManager : MonoBehaviour
     private void Update()
     {
         //UpdateCurrentWaveNumber();
+        if (_previousWave.transform.childCount < 1)
+        {
+            _currentWave++;
+            GameManager.instance.SetNextWave();
+        }
     }
 
     private void UpdateCurrentWaveNumber()
@@ -78,29 +84,28 @@ public class SpawnManager : MonoBehaviour
             var currentWave = _waves[_currentWave].sequence;
             Debug.Log("Modified Current Wave: " + _currentWave);
             Debug.Log("Total # of Waves: " + _waves.Count);
-            var previousWave = new GameObject("Previous Wave");
+            _previousWave = new GameObject("Previous Wave");
             
             foreach (var obj in currentWave)
             {
-                Instantiate(obj, previousWave.transform);
+                Instantiate(obj, _previousWave.transform);
                 yield return _enemySpawnTime;
 
-            }
-
-            yield return _nextWaveTime;
-
-            Destroy(previousWave);
-
-            GameManager.instance.SetNextWave();
+            }   
 
             if (_currentWave >= _waves.Count)
             {
                 Debug.Log("Done all Waves!");
-                //GameManager.instance.WaveNumberIncrement();
-                //break;
+                //Disp[lay win screen
+                break;
             }
 
             yield break;
         }
+    }
+
+    public int GetCurrentWave()
+    {
+        return _currentWave;
     }
 }
