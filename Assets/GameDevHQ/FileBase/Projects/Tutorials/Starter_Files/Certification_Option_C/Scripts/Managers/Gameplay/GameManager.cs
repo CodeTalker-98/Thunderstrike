@@ -17,12 +17,10 @@ public class GameManager : MonoBehaviour
 
 
     [Header("Debug")]
-    [SerializeField] private int _waveNumber = 0;
+    [SerializeField] private int _currentWave;
     [SerializeField] private float _brightness;
 
-    private bool _nextWave = false;
     private bool _checkpointReached = false;
-    private bool _levelComplete = false;
 
     private int _score;
     private int _highScore = 0;
@@ -35,6 +33,7 @@ public class GameManager : MonoBehaviour
     private WaitForSeconds _waveInfoScreenTime;
 
     public bool isHardModeOn { get; private set; }
+    public bool levelComplete = false;
     public bool isDead = false;
 
     public static GameManager instance;
@@ -54,7 +53,6 @@ public class GameManager : MonoBehaviour
             _highScore = PlayerPrefs.GetInt("Highscore", 0);
             _uiManager = GameObject.Find("UI").GetComponent<UIManager>();
             _spawnManager = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
-            _nextWave = true;
             isDead = false;
         }
     }
@@ -62,6 +60,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Init();
+        NextWave();
     }
 
     private void Init()
@@ -81,44 +80,50 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void NextWave()
+    {
+        StartCoroutine(ShowWaveInfoScreen());
+    }
+
     private void Update()
     {
-        if (_nextWave)
-        {
-            NextWave();
-        }
+        LevelStatus();
+    }
 
-        if (_waveNumber == 9)
-        {
-            PlayerPrefs.SetInt("Score", _score);
-            PlayerPrefs.Save();
-        }
-
-        if (_waveNumber == 16)
-        {
-            _levelComplete = true;
-            _winScreen.SetActive(true);
-        }
-
-        if (_levelComplete)
-        {
-            if (_score > _highScore)
-            {
-                _highScore = _score;
-                PlayerPrefs.SetInt("Highscore", _highScore);
-                PlayerPrefs.Save();
-            }
-
-            _uiManager.DisplayFinalScore(_score, _highScore);
-
-        }
-
-        _waveNumber = _spawnManager.GetCurrentWave();
+    private void LevelStatus()
+    {
+        _currentWave = _spawnManager.GetCurrentWave(); 
     }
 
     public void GameOverScreen()
     {
         _gameOverScreen.SetActive(true);
+    }
+
+    public void WinScreen()
+    {
+        _gameOverScreen.SetActive(false);
+        _winScreen.SetActive(true);
+        SetScore();
+    }
+
+    private void SetScore()
+    {
+        if (_score > _highScore)
+        {
+            _highScore = _score;
+            PlayerPrefs.SetInt("Highscore", _highScore);
+            PlayerPrefs.Save();
+        }
+
+
+
+        _uiManager.DisplayFinalScore(_score, _highScore);
+    }
+
+    public void GetScore(int score)
+    {
+        _score = score;
     }
 
     public void ReturnToMainMenu()
@@ -150,37 +155,19 @@ public class GameManager : MonoBehaviour
     {
         if (_checkpointReached)
         {
-            _waveNumber = 9;
             //Send wave to spawn manager to load it
             _score = PlayerPrefs.GetInt("Score", 0);
         }
     }
 
-    public void NextWave()
-    {
-        //pause spawn manager
-        _uiManager.UpdateWaveInfo();
-
-        if (_nextWave)
-        {
-            _nextWave = false;
-            StartCoroutine(ShowWaveInfoScreen());
-        }       
-    }
-
-    public void SetNextWave()
-    {
-        _nextWave = true;
-    }
-
     public int SendWaveNumber()
     {
-        return _waveNumber;
+        return _currentWave;
     }
 
     public string SendWaveInfo(int index)
     {
-        if (index > 0 && index < 16)
+        if (index >= 0 && index < 16)
         {
             return _waveInfo[index];
         }
@@ -188,17 +175,10 @@ public class GameManager : MonoBehaviour
         return null;
     }
 
-    public void WaveNumberIncrement()
-    {
-        if (_waveNumber > 15)
-        {
-            _winScreen.SetActive(true);
-        }
-    }
-
     IEnumerator ShowWaveInfoScreen()
     {
         _spawnManager.enabled = false;
+        _uiManager.UpdateWaveInfo();
         _waveInfoScreen.SetActive(true);
         yield return _waveInfoScreenTime;
         _waveInfoScreen.SetActive(false);

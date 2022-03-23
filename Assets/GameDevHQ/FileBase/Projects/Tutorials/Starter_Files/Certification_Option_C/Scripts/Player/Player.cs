@@ -48,8 +48,20 @@ public class Player : MonoBehaviour, IDamagable
 
     private void Update()
     {
+        CheckLevelComplete();
         //Debug.Log("Health: " + Health);
         //Debug.Log("Score: " + _score);
+    }
+
+    private void CheckLevelComplete()
+    {
+        if (GameManager.instance != null)
+        {
+            if (GameManager.instance.levelComplete)
+            {
+                GameManager.instance.GetScore(_score);
+            }
+        }
     }
 
     public void Damage(int damageAmount)
@@ -79,6 +91,7 @@ public class Player : MonoBehaviour, IDamagable
             if (_score > -1)
             {
                 UpdateScore((-_score / 2));
+                GameManager.instance.GetScore(_score);
             }
 
             //play death sound

@@ -12,8 +12,6 @@ public class SpawnManager : MonoBehaviour
     [Header("Waves")]
     [SerializeField] private List<Waves> _waves = new List<Waves>();
 
-    private bool _waveStart = true;
-
     private int _currentWave = 0;
 
     private GameObject _previousWave;
@@ -42,62 +40,59 @@ public class SpawnManager : MonoBehaviour
                 _enemySpawnBuffer /= 1.0f;
             }
         }
-
-        StartCoroutine(StartWaveRoutine());
     }
 
     private void Update()
     {
-        //UpdateCurrentWaveNumber();
-        if (_previousWave.transform.childCount < 1)
-        {
-            _currentWave++;
-            GameManager.instance.SetNextWave();
-        }
+        CheckEndOfWave();
     }
 
-    private void UpdateCurrentWaveNumber()
+    private void CheckEndOfWave()
     {
-        _currentWave = GameManager.instance.SendWaveNumber();
-        Debug.Log("Current Wave: " + _currentWave);
+        if (_previousWave != null)
+        {
+            if (_previousWave.transform.childCount < 1)
+            {
+                if (_currentWave >= _waves.Count)
+                {
+                    Debug.Log("Done all Waves!");
+                    GameManager.instance.levelComplete = true;
+                    GameManager.instance.WinScreen();
+                }
+                else
+                {
+                    GameManager.instance.NextWave();
+                    Destroy(_previousWave.gameObject);
+                }
+            }
+        }
+        else
+        {
+            return;
+        }
     }
 
     private void OnEnable()
     {
-        if (_waveStart)
-        {
-            return;
-        }
-        else
-        {
-            _currentWave = GameManager.instance.SendWaveNumber();
-            StartCoroutine(StartWaveRoutine());
-        }
+        StartCoroutine(StartWaveRoutine());
     }
 
     IEnumerator StartWaveRoutine()
     {
-        _waveStart = false;
-
         while (!GameManager.instance.isDead)
         {
             var currentWave = _waves[_currentWave].sequence;
-            Debug.Log("Modified Current Wave: " + _currentWave);
-            Debug.Log("Total # of Waves: " + _waves.Count);
             _previousWave = new GameObject("Previous Wave");
             
             foreach (var obj in currentWave)
             {
                 Instantiate(obj, _previousWave.transform);
                 yield return _enemySpawnTime;
+            }
 
-            }   
-
-            if (_currentWave >= _waves.Count)
+            if (_currentWave < _waves.Count)
             {
-                Debug.Log("Done all Waves!");
-                //Disp[lay win screen
-                break;
+                _currentWave++;
             }
 
             yield break;
