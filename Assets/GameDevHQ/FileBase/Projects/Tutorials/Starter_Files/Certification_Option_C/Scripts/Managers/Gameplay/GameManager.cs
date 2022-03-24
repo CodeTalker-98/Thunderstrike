@@ -93,6 +93,11 @@ public class GameManager : MonoBehaviour
     private void LevelStatus()
     {
         _currentWave = _spawnManager.GetCurrentWave(); 
+
+        if (_currentWave == 8)
+        {
+            _checkpointReached = true;
+        }
     }
 
     public void GameOverScreen()
@@ -155,8 +160,8 @@ public class GameManager : MonoBehaviour
     {
         if (_checkpointReached)
         {
-            //Send wave to spawn manager to load it
             _score = PlayerPrefs.GetInt("Score", 0);
+            //reenable player
         }
     }
 
@@ -167,7 +172,7 @@ public class GameManager : MonoBehaviour
 
     public string SendWaveInfo(int index)
     {
-        if (index >= 0 && index < 16)
+        if (index >= 0 && index < 15)
         {
             return _waveInfo[index];
         }

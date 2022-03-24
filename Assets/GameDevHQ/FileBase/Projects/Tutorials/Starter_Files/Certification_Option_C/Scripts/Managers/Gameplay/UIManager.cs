@@ -29,7 +29,6 @@ public class UIManager : MonoBehaviour
             int waveNumber = GameManager.instance.SendWaveNumber() + 1;
             _waveNumberText.text = "Wave: " + waveNumber.ToString();
             _waveInfoText.text = GameManager.instance.SendWaveInfo(waveNumber - 1);
-            Debug.Log(_waveInfoText.text);
         }
     }
 
@@ -45,8 +44,8 @@ public class UIManager : MonoBehaviour
 
     public void DisplayFinalScore(int value, int highscore)
     {
-        _finalScoreText.text = value.ToString().PadLeft(7, '0');
-        _highScoreText.text = highscore.ToString().PadLeft(7, '0');
+        _finalScoreText.text = "Final Score: " + value.ToString().PadLeft(7, '0');
+        _highScoreText.text = "High Score: " + highscore.ToString().PadLeft(7, '0');
     }
 
     public void DisplayWeaponName(int index)

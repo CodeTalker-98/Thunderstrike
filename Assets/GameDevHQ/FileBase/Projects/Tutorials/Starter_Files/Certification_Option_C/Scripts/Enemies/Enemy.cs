@@ -81,6 +81,10 @@ public abstract class Enemy : MonoBehaviour, IDamagable
             transform.position = new Vector3(_xStart, _yStart, 0.0f);
 
         }
+        else
+        {
+            transform.position = new Vector3(_xStart, 0.0f, 0.0f);
+        }
 
         int randomInt = Random.Range(0, 5);
 

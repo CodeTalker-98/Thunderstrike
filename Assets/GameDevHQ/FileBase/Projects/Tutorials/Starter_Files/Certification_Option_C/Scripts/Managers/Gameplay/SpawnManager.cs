@@ -103,4 +103,10 @@ public class SpawnManager : MonoBehaviour
     {
         return _currentWave;
     }
+
+    public void SetCurrentWave()
+    {
+        _currentWave = 9;
+        GameManager.instance.NextWave();
+    }
 }

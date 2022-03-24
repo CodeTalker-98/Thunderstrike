@@ -49,7 +49,6 @@ public class Player : MonoBehaviour, IDamagable
     private void Update()
     {
         CheckLevelComplete();
-        //Debug.Log("Health: " + Health);
         //Debug.Log("Score: " + _score);
     }
 
@@ -154,9 +153,9 @@ public class Player : MonoBehaviour, IDamagable
     private void PlayerStatReset()
     {
         GameManager.instance.isDead = false;
+        transform.position = Vector3.zero;
         Health = _health;
         _canEnableShield = false;
         _canEnableInvincibility = false;
-        _score = 0;
     }
 }
