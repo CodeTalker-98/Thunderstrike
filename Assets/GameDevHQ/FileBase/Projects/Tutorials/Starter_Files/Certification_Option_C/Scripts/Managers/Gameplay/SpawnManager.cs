@@ -45,7 +45,6 @@ public class SpawnManager : MonoBehaviour
     private void Update()
     {
         CheckEndOfWave();
-        Debug.Log("Updating wave number: " + _currentWave);
     }
 
     private void CheckEndOfWave()
@@ -110,5 +109,10 @@ public class SpawnManager : MonoBehaviour
         _currentWave = 8;
         GameManager.instance.NextWave();
         Debug.Log("wave after Checkpoint:" + _currentWave);
+    }
+
+    public void DestroyPreviousWave()
+    {
+        Destroy(_previousWave.gameObject);
     }
 }

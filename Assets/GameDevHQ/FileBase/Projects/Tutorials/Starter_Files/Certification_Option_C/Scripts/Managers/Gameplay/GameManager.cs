@@ -108,6 +108,8 @@ public class GameManager : MonoBehaviour
 
     public void GameOverScreen()
     {
+        _spawnManager.DestroyPreviousWave();
+        _waveInfoScreen.SetActive(false);
         _gameOverScreen.SetActive(true);
     }
 
@@ -126,8 +128,6 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("Highscore", _highScore);
             PlayerPrefs.Save();
         }
-
-
 
         _uiManager.DisplayFinalScore(_score, _highScore);
     }
@@ -167,12 +167,13 @@ public class GameManager : MonoBehaviour
         if (_checkpointReached)
         {
             _score = PlayerPrefs.GetInt("Score", 0);
+            SetWaveNumber();
             if (_playerManager != null)
             {
                 _playerManager.transform.GetChild(0).gameObject.SetActive(true);
             }
-            _gameOverScreen.SetActive(false);
             _spawnManager.SetCurrentWave();
+            _gameOverScreen.SetActive(false);
         }
     }
 
