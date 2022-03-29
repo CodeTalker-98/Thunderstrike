@@ -18438,7 +18438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa5f3e2e24163d940b35ccaa85ecb0f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 5
+  _health: 1
   _canEnableShield: 0
   _canEnableInvincibility: 0
   _score: 0

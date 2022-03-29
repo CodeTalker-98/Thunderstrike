@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     private int _score;
     private int _highScore = 0;
 
+    private GameObject _playerManager;
+
     private Light _directionalLight;
 
     private UIManager _uiManager;
@@ -53,6 +55,7 @@ public class GameManager : MonoBehaviour
             _highScore = PlayerPrefs.GetInt("Highscore", 0);
             _uiManager = GameObject.Find("UI").GetComponent<UIManager>();
             _spawnManager = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
+            _playerManager = GameObject.Find("/Player Manager");
             isDead = false;
         }
     }
@@ -82,7 +85,10 @@ public class GameManager : MonoBehaviour
 
     public void NextWave()
     {
-        StartCoroutine(ShowWaveInfoScreen());
+        if (!isDead)
+        {
+            StartCoroutine(ShowWaveInfoScreen());
+        }
     }
 
     private void Update()
@@ -161,8 +167,18 @@ public class GameManager : MonoBehaviour
         if (_checkpointReached)
         {
             _score = PlayerPrefs.GetInt("Score", 0);
-            //reenable player
+            if (_playerManager != null)
+            {
+                _playerManager.transform.GetChild(0).gameObject.SetActive(true);
+            }
+            _gameOverScreen.SetActive(false);
+            _spawnManager.SetCurrentWave();
         }
+    }
+
+    public void SetWaveNumber()
+    {
+        _currentWave = 8;
     }
 
     public int SendWaveNumber()
