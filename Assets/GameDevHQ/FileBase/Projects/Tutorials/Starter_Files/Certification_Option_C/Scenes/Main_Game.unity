@@ -6148,7 +6148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.6509804}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5803922}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -18412,7 +18412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fireRate: 0.5
-  _lineOfSight: 50
+  _lineOfSight: 40
   _bulletPrefab:
   - {fileID: 4853788508927494712, guid: 6e7daaf760a43114db68263dcae3d451, type: 3}
   - {fileID: 1910197988217707088, guid: 98f6e89d0a2df4044a006477b7657220, type: 3}
@@ -19401,7 +19401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xStart: 45
-  _enemySpawnBuffer: 1
+  _enemySpawnBuffer: 2
   _nextWaveBuffer: 10
   _waves:
   - {fileID: 11400000, guid: 8d9ecb4ba3cb45243a02e76fe936c16a, type: 2}

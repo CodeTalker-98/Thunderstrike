@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 535826d7d6ba8e64d87271367045ee13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 2
+  _health: 4
   _collisionDamage: 1
   _scoreValue: 750
   _colorChangeTime: 1.5

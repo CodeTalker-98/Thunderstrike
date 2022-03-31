@@ -38,7 +38,7 @@ public class AudioManager : MonoBehaviour
 
             for (int i = 0; i < _musicSources.Length; i++)
             {
-                GameObject newMusicSource = new GameObject("Music Source" + " " + (i + 1));
+                GameObject newMusicSource = new GameObject("Music Source " + (i + 1));
                 _musicSources[i] = newMusicSource.AddComponent<AudioSource>();
                 _musicSources[i].loop = true;
                 newMusicSource.transform.parent = transform;                
@@ -82,10 +82,7 @@ public class AudioManager : MonoBehaviour
                 break;
         }
 
-        for (int i = 0; i < _musicSources.Length; i++)
-        {
-            _musicSources[i].volume = _musicVolumePercent * _masterVolumePercent;
-        }
+        _musicSources[0].volume = _musicVolumePercent * _masterVolumePercent;
 
         PlayerPrefs.SetFloat("Master Volume", _masterVolumePercent);
         PlayerPrefs.SetFloat("Music Volume", _musicVolumePercent);
