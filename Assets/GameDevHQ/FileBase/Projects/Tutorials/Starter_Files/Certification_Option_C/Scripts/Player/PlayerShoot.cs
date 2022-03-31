@@ -69,7 +69,7 @@ public class PlayerShoot : MonoBehaviour
                         }
                     }
 
-                    AudioManager.instance.PlaySound(_gunSounds[_prefabIndex - 1], transform.position);
+                    AudioManager.instance.PlaySound(_gunSounds[_prefabIndex - 1]);
 
                     _cycleTime = Time.time + _fireRate;
                 }

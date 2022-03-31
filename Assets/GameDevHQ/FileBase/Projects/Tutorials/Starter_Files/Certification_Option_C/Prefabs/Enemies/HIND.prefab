@@ -59,8 +59,12 @@ MonoBehaviour:
   - {r: 1, g: 0, b: 0.4361801, a: 0}
   - {r: 1, g: 0, b: 0.95273113, a: 0}
   - {r: 0.417881, g: 0, b: 1, a: 0}
+  _xStart: 45
+  _yStart: 0
   _canSpawnPrefab: 0
   _isBoss: 0
+  _isBomber: 0
+  _cantRandomize: 0
   _powerupPrefab: {fileID: 998905856523297257, guid: 782f409842896e549b71f1e75b878a75,
     type: 3}
   _collisionPrefab: {fileID: 4691645116330879498, guid: 4ce4a3d6140d9cf449ed4b175ce22237,
@@ -98,6 +102,7 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 1469040505689095664, guid: 26ce54dac4df248438ec42239491fce4,
     type: 3}
   _firingOffset: {fileID: 5224578368555786755}
+  _shootSound: {fileID: 8300000, guid: 3241196913a010747922b761a92a8720, type: 3}
 --- !u!65 &5224578368350122102
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class NighthawkBombDrop : MonoBehaviour
     [Header("Prefabs")]
     [SerializeField] private GameObject _bombPrefab;
     [SerializeField] private Transform _bombFiringPosition;
+    [SerializeField] private AudioClip _bombDropSound;
 
     private float _cycletime = -1.0f;
 
@@ -49,6 +50,8 @@ public class NighthawkBombDrop : MonoBehaviour
             {
                 projectiles[i].SetProjectileDirection(Vector3.down);
             }
+
+            AudioManager.instance.PlaySound(_bombDropSound);
 
             _cycletime = _fireRate + Time.time;
         }

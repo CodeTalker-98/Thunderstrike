@@ -4,7 +4,20 @@ using UnityEngine;
 
 public class DestroyVFX : MonoBehaviour
 {
-    //Play Sound @ start??
+    [Header("Audio Clip")]
+    [SerializeField] private AudioClip _sound;
+
+    private Camera _mainCamera;
+
+    private void Start()
+    {
+        _mainCamera = Camera.main;
+    }
+
+    public void PlaySound()
+    {
+        AudioManager.instance.PlaySound(_sound);
+    }
 
     public void Destroy()
     {

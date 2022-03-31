@@ -58,6 +58,8 @@ MonoBehaviour:
     type: 3}
   _homingProjectile: {fileID: 4404541740720273914, guid: df6cdd752b5d18e4dadb14e07b1e8400,
     type: 3}
+  _shootSound: {fileID: 8300000, guid: 5b4cba1c36733c449a90cb27984a52f6, type: 3}
+  _shootMissileSound: {fileID: 8300000, guid: f26c339d6151f0b4d8a831e302eb8daf, type: 3}
 --- !u!1 &3864732319363969289
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,8 +119,12 @@ MonoBehaviour:
   - {r: 1, g: 0, b: 0.43529415, a: 0}
   - {r: 1, g: 0, b: 0.95294124, a: 0}
   - {r: 0.41960788, g: 0, b: 1, a: 0}
+  _xStart: 45
+  _yStart: 0
   _canSpawnPrefab: 0
   _isBoss: 1
+  _isBomber: 0
+  _cantRandomize: 0
   _powerupPrefab: {fileID: 998905856523297257, guid: 782f409842896e549b71f1e75b878a75,
     type: 3}
   _collisionPrefab: {fileID: 4691645116330879498, guid: 4ce4a3d6140d9cf449ed4b175ce22237,

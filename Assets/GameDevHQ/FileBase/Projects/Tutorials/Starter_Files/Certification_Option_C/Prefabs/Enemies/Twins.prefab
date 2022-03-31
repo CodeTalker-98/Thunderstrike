@@ -89,8 +89,8 @@ MonoBehaviour:
   - {r: 1, g: 0, b: 0.43529415, a: 0}
   - {r: 1, g: 0, b: 0.95294124, a: 0}
   - {r: 0.41960788, g: 0, b: 1, a: 0}
-  xStart: 45
-  yStart: 0
+  _xStart: 45
+  _yStart: 0
   _canSpawnPrefab: 0
   _isBoss: 0
   _isBomber: 0
@@ -132,6 +132,7 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 1574492793446660522, guid: 69301369e2b5b0c498b2c5d631239c24,
     type: 3}
   _firingOffset: {fileID: 5907066009901313131}
+  _shootSound: {fileID: 8300000, guid: 0711ea53a8b316547b016ac6340086e9, type: 3}
 --- !u!65 &5907066010098499102
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -337,8 +338,8 @@ MonoBehaviour:
   - {r: 1, g: 0, b: 0.43529415, a: 0}
   - {r: 1, g: 0, b: 0.95294124, a: 0}
   - {r: 0.41960788, g: 0, b: 1, a: 0}
-  xStart: 45
-  yStart: 0
+  _xStart: 45
+  _yStart: 0
   _canSpawnPrefab: 0
   _isBoss: 0
   _isBomber: 0
@@ -380,6 +381,7 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 3710217074163048709, guid: 1fedad467cbf2b34a983e295dde9c26e,
     type: 3}
   _firingOffset: {fileID: 9051902160236076669}
+  _shootSound: {fileID: 8300000, guid: 3241196913a010747922b761a92a8720, type: 3}
 --- !u!65 &9051902160686760467
 BoxCollider:
   m_ObjectHideFlags: 0

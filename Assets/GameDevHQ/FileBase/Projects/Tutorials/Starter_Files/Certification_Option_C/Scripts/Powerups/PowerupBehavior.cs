@@ -12,6 +12,7 @@ public class PowerupBehavior : MonoBehaviour
 
     [Header("Prefabs")]
     [SerializeField] private GameObject _collectedPrefab;
+    [SerializeField] private AudioClip _powerUpCollectedAudio;
 
     private int _index;
     private int _scoreValue = 0;
@@ -105,7 +106,7 @@ public class PowerupBehavior : MonoBehaviour
             }
 
             Instantiate(_collectedPrefab, other.transform.position, Quaternion.identity);
-            //play sound??
+            AudioManager.instance.PlaySound(_powerUpCollectedAudio);
             Destroy(this.gameObject);
         }
     }

@@ -55,6 +55,8 @@ MonoBehaviour:
   _powerup: 0
   _collectedPrefab: {fileID: 8963575961497753869, guid: 16e1d06b8c09cfd4788a3370051739c8,
     type: 3}
+  _powerUpCollectedAudio: {fileID: 8300000, guid: af095f01bbb137149ab4ddeeb6fcee9f,
+    type: 3}
 --- !u!65 &998905856523297261
 BoxCollider:
   m_ObjectHideFlags: 0

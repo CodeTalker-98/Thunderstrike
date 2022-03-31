@@ -61,7 +61,7 @@ public class AudioManager : MonoBehaviour
     {
         if (_playerTransform != null)
         {
-            _audioListener.position = _playerTransform.position;
+            //_audioListener.position = _playerTransform.position;
         }
     }
 
@@ -93,11 +93,11 @@ public class AudioManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    public void PlaySound(AudioClip clip, Vector3 pos)
+    public void PlaySound(AudioClip clip)
     {
         if (clip != null)
         {
-            AudioSource.PlayClipAtPoint(clip, pos, _sfxVolumePercent * _masterVolumePercent);
+            AudioSource.PlayClipAtPoint(clip, _audioListener.position, _sfxVolumePercent * _masterVolumePercent);
         }
     }
 

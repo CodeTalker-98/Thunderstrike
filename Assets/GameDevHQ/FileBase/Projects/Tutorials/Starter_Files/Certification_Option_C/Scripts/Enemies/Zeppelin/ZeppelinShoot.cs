@@ -15,6 +15,8 @@ public class ZeppelinShoot : MonoBehaviour
     [SerializeField] private GameObject _projectile;
     [SerializeField] private GameObject _multiProjectile;
     [SerializeField] private GameObject _homingProjectile;
+    [SerializeField] private AudioClip _shootSound;
+    [SerializeField] private AudioClip _shootMissileSound;
 
     private enum Stage { Basic, Modified, Final}
 
@@ -97,6 +99,8 @@ public class ZeppelinShoot : MonoBehaviour
                 }
             }
 
+            AudioManager.instance.PlaySound(_shootSound);
+
             _cycleTime = fireRate + Time.time;
         } 
     }
@@ -124,6 +128,8 @@ public class ZeppelinShoot : MonoBehaviour
                     projectileMovement[i].SetProjectileDirection(_direction[i]);
                 }
             }
+
+            AudioManager.instance.PlaySound(_shootMissileSound);
 
             _cycleTime = fireRate + Time.time;
         }

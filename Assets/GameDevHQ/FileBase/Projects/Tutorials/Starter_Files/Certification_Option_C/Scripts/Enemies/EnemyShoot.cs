@@ -12,6 +12,7 @@ public class EnemyShoot : MonoBehaviour
     [Header("Prefabs")]
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private Transform _firingOffset;
+    [SerializeField] private AudioClip _shootSound;
 
     private bool _canUpdateLook = false;
 
@@ -101,13 +102,13 @@ public class EnemyShoot : MonoBehaviour
                     GameObject firedProjectile = Instantiate(projectile, _firingOffset.position, Quaternion.identity);
                     ProjectileMovement[] projectiles = firedProjectile.GetComponents<ProjectileMovement>();
 
-                    //Play sound
-
                     for (int i = 0; i < projectiles.Length; i++)
                     {
                         projectiles[i].SetProjectileDirection(direction);
                         //Do something if need be
                     }
+
+                    AudioManager.instance.PlaySound(_shootSound);
 
                     _cycleTime = Time.time + _fireRate;
                 }

@@ -1,5 +1,73 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &5811507446193892065
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4898844467468263722}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.24, y: 3.45, z: 12.08}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &5811507446193892067
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4898844467468263722}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 33f0d0b4998af3843a91e40cef75c5e1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5811507446193892064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4898844467468263722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06b2902ac068e804fb4d688e1d8e4757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fireRate: 0.5
+  _bombPrefab: {fileID: 913440081084100295, guid: 717c3c6c6b03c6b42813c55d225d7446,
+    type: 3}
+  _bombFiringPosition: {fileID: 5811507445626590339}
+  _bombDropSound: {fileID: 8300000, guid: 2b0661cae1ffa464cbe772c077c4701c, type: 3}
+--- !u!114 &5811507446193892066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4898844467468263722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d006bdb4c836ef448e0dff43b872277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fireRate: 0.5
+  _lineOfSight: 50
+  _lookDirection: 2
+  _bulletPrefab: {fileID: 4283053469651517160, guid: 0ea70e2eccda0dc45bc1b2721b1e08ae,
+    type: 3}
+  _firingOffset: {fileID: 5508155080006052433}
+  _shootSound: {fileID: 8300000, guid: 4665de007f6a66b448709a1ec11f9ab7, type: 3}
 --- !u!1 &5508155079808645157
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,8 +127,12 @@ MonoBehaviour:
   - {r: 1, g: 0, b: 0.43529415, a: 0}
   - {r: 1, g: 0, b: 0.95294124, a: 0}
   - {r: 0.41960788, g: 0, b: 1, a: 0}
+  _xStart: 45
+  _yStart: 0
   _canSpawnPrefab: 0
   _isBoss: 1
+  _isBomber: 0
+  _cantRandomize: 0
   _powerupPrefab: {fileID: 998905856523297257, guid: 782f409842896e549b71f1e75b878a75,
     type: 3}
   _collisionPrefab: {fileID: 4691645116330879498, guid: 4ce4a3d6140d9cf449ed4b175ce22237,
@@ -195,72 +267,6 @@ Transform:
   m_Father: {fileID: 5508155079808645155}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5811507446193892065
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4898844467468263722}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.24, y: 3.45, z: 12.08}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &5811507446193892067
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4898844467468263722}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 33f0d0b4998af3843a91e40cef75c5e1, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5811507446193892066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4898844467468263722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d006bdb4c836ef448e0dff43b872277, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _fireRate: 0.5
-  _lineOfSight: 50
-  _lookDirection: 2
-  _bulletPrefab: {fileID: 4283053469651517160, guid: 0ea70e2eccda0dc45bc1b2721b1e08ae,
-    type: 3}
-  _firingOffset: {fileID: 5508155080006052433}
---- !u!114 &5811507446193892064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4898844467468263722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06b2902ac068e804fb4d688e1d8e4757, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _fireRate: 0.5
-  _bombPrefab: {fileID: 913440081084100295, guid: 717c3c6c6b03c6b42813c55d225d7446,
-    type: 3}
-  _bombFiringPosition: {fileID: 5811507445626590339}
 --- !u!1001 &4898844467468232586
 PrefabInstance:
   m_ObjectHideFlags: 0

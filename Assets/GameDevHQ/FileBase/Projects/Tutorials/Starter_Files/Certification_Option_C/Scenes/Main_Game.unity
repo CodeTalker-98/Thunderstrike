@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -6148,7 +6148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.6509804}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -6693,7 +6693,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 3.03e-43, y: NaN, z: 8.7e-44, w: 4.5919e-41}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -18421,11 +18421,11 @@ MonoBehaviour:
   - {fileID: 7673359525261771407, guid: 80cf67de717acc942ad1914d99c62e83, type: 3}
   _firingOffset: {fileID: 1239855776}
   _gunSounds:
-  - {fileID: 8300000, guid: fa470fb13ff7481498e91561a9dd7a04, type: 3}
-  - {fileID: 8300000, guid: fa470fb13ff7481498e91561a9dd7a04, type: 3}
-  - {fileID: 8300000, guid: fa470fb13ff7481498e91561a9dd7a04, type: 3}
-  - {fileID: 8300000, guid: fa470fb13ff7481498e91561a9dd7a04, type: 3}
-  - {fileID: 8300000, guid: fa470fb13ff7481498e91561a9dd7a04, type: 3}
+  - {fileID: 8300000, guid: 0711ea53a8b316547b016ac6340086e9, type: 3}
+  - {fileID: 8300000, guid: c62ee7d347566994ba2df9bdd261acb9, type: 3}
+  - {fileID: 8300000, guid: 4665de007f6a66b448709a1ec11f9ab7, type: 3}
+  - {fileID: 8300000, guid: 30119792f40f4644a9e3d6f3e44a81fc, type: 3}
+  - {fileID: 8300000, guid: 5b4cba1c36733c449a90cb27984a52f6, type: 3}
 --- !u!114 &1477206600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18537,7 +18537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 1}
+  m_Color: {r: 0.029704766, g: 0.5188679, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -18684,7 +18684,7 @@ MonoBehaviour:
   - Bombers!? This one's gonna be tough.
   - You're really impressing me. I might have to promote you after this.
   - Radar isn't showing anything. We might be in trouble.
-  - That was a tough one. Youv'e certainly got the guts Private!
+  - That was a tough one. You've certainly got the guts Private!
   - Uh oh! Watch for the kamikaze! They will take you out of the fight for good!
   - Stay on your toes! The last leg of this mission is a difficult one.
   - These fighter jets might cause you some issues.
