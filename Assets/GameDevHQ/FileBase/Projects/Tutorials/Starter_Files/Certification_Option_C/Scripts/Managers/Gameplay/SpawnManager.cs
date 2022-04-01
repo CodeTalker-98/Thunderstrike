@@ -5,19 +5,19 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [Header("Adjustable Values")]
-    [SerializeField] private float xStart = 45.0f;
     [SerializeField] private float _enemySpawnBuffer = 1.0f;
-    [SerializeField] private float _nextWaveBuffer = 10.0f;
 
     [Header("Waves")]
     [SerializeField] private List<Waves> _waves = new List<Waves>();
+
+    private bool _canInitializeSpawn = false;
+    private bool _waveOver = false;
 
     private int _currentWave = 0;
 
     private GameObject _previousWave;
 
     private WaitForSeconds _enemySpawnTime;
-    private WaitForSeconds _nextWaveTime;
 
     private void Start()
     {
@@ -27,7 +27,6 @@ public class SpawnManager : MonoBehaviour
     private void Init()
     {
         _enemySpawnTime = new WaitForSeconds(_enemySpawnBuffer);
-        _nextWaveTime = new WaitForSeconds(_nextWaveBuffer);
 
         if (GameManager.instance != null)
         {
@@ -40,6 +39,10 @@ public class SpawnManager : MonoBehaviour
                 _enemySpawnBuffer /= 1.0f;
             }
         }
+
+        StartCoroutine(StartWaveRoutine());
+
+        _canInitializeSpawn = true;
     }
 
     private void Update()
@@ -51,11 +54,10 @@ public class SpawnManager : MonoBehaviour
     {
         if (_previousWave != null)
         {
-            if (_previousWave.transform.childCount < 1)
+            if (_previousWave.transform.childCount < 1 && _waveOver)
             {
                 if (_currentWave >= _waves.Count)
                 {
-                    Debug.Log("Done all Waves!");
                     GameManager.instance.levelComplete = true;
                     GameManager.instance.WinScreen();
                 }
@@ -64,6 +66,8 @@ public class SpawnManager : MonoBehaviour
                     GameManager.instance.NextWave();
                     Destroy(_previousWave.gameObject);
                 }
+
+                _waveOver = false;
             }
         }
         else
@@ -74,7 +78,10 @@ public class SpawnManager : MonoBehaviour
 
     private void OnEnable()
     {
-        StartCoroutine(StartWaveRoutine());
+        if (_canInitializeSpawn)
+        {
+            StartCoroutine(StartWaveRoutine());
+        }
     }
 
     IEnumerator StartWaveRoutine()
@@ -86,7 +93,15 @@ public class SpawnManager : MonoBehaviour
             
             foreach (var obj in currentWave)
             {
-                Instantiate(obj, _previousWave.transform);
+                if (_previousWave != null)
+                {
+                    Instantiate(obj, _previousWave.transform);
+                }
+                else
+                {
+                    yield break;
+                }
+
                 yield return _enemySpawnTime;
             }
 
@@ -95,6 +110,7 @@ public class SpawnManager : MonoBehaviour
                 _currentWave++;
             }
 
+            _waveOver = true;
             yield break;
         }
     }
@@ -108,11 +124,11 @@ public class SpawnManager : MonoBehaviour
     {
         _currentWave = 8;
         GameManager.instance.NextWave();
-        Debug.Log("wave after Checkpoint:" + _currentWave);
     }
 
     public void DestroyPreviousWave()
     {
         Destroy(_previousWave.gameObject);
     }
+
 }
