@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 535826d7d6ba8e64d87271367045ee13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 4
+  _health: 3
   _collisionDamage: 1
   _scoreValue: 750
   _colorChangeTime: 1.5
@@ -65,6 +65,7 @@ MonoBehaviour:
   _isBoss: 0
   _isBomber: 1
   _cantRandomize: 0
+  _childMoves: 0
   _powerupPrefab: {fileID: 998905856523297257, guid: 782f409842896e549b71f1e75b878a75,
     type: 3}
   _collisionPrefab: {fileID: 4691645116330879498, guid: 4ce4a3d6140d9cf449ed4b175ce22237,

@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movementSpeed: 30
+  _homingTimer: 5
   _damageAmount: 2
   _isHomingProjectile: 0
   _impactPrefab: {fileID: 875477905023730217, guid: 6c884d4eb85cab24f90b47759eed954b,
@@ -191,7 +192,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300010, guid: 5167829e0dedb4a18bc57638254b565d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.61538076, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

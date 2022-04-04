@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1469040504742588615}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1469040505689095665}
   m_RootOrder: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300010, guid: 5167829e0dedb4a18bc57638254b565d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.9560102, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movementSpeed: 15
+  _homingTimer: 5
   _damageAmount: 1
   _isHomingProjectile: 0
   _impactPrefab: {fileID: 875477905023730217, guid: 6c884d4eb85cab24f90b47759eed954b,
@@ -144,7 +145,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.2816453, y: 0.61418164, z: 0.2}
+  m_Size: {x: 1.74, y: 0.48, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3911822446823451531
 Rigidbody:

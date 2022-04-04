@@ -18,6 +18,7 @@ public abstract class Enemy : MonoBehaviour, IDamagable
     [SerializeField] protected bool _isBoss = false;
     [SerializeField] protected bool _isBomber = false;
     [SerializeField] protected bool _cantRandomize = false;
+    [SerializeField] protected bool _childMoves = false;
 
     [Header("Prefabs")]
     [SerializeField] protected GameObject _powerupPrefab;
@@ -136,7 +137,16 @@ public abstract class Enemy : MonoBehaviour, IDamagable
 
             if (_canSpawnPrefab)
             {
-                Instantiate(_powerupPrefab, transform.position, Quaternion.identity);
+                if (!_childMoves)
+                {
+                    Instantiate(_powerupPrefab, transform.position, Quaternion.identity);
+                }
+                else
+                {
+                    Transform childPosition = this.gameObject.transform.GetChild(0).transform;
+
+                    Instantiate(_powerupPrefab, childPosition.position, Quaternion.identity);
+                }
             }
 
             Instantiate(_deathPrefab, transform.position, Quaternion.identity);

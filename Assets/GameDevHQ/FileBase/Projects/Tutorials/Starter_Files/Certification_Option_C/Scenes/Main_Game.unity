@@ -18424,8 +18424,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0711ea53a8b316547b016ac6340086e9, type: 3}
   - {fileID: 8300000, guid: c62ee7d347566994ba2df9bdd261acb9, type: 3}
   - {fileID: 8300000, guid: 4665de007f6a66b448709a1ec11f9ab7, type: 3}
-  - {fileID: 8300000, guid: 30119792f40f4644a9e3d6f3e44a81fc, type: 3}
   - {fileID: 8300000, guid: 5b4cba1c36733c449a90cb27984a52f6, type: 3}
+  - {fileID: 8300000, guid: 30119792f40f4644a9e3d6f3e44a81fc, type: 3}
 --- !u!114 &1477206600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18678,7 +18678,7 @@ MonoBehaviour:
   _waveInfo:
   - Alright Private! Big mission today. Let's see what you've got!
   - Not bad.... Keep heading east. That's where our objective is.
-  - Got some different enemies inbound. Get them before they get you!
+  - Looks like we have some different enemies inbound. Get them before they get you!
   - Drones inbound! Be quick. They like to fight in pairs.
   - This is a tough mission for a new guy like you.
   - Bombers!? This one's gonna be tough.
@@ -19400,7 +19400,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 593cbe718af45e247a5287b4e1de5994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xStart: 45
   _enemySpawnBuffer: 2
   _waves:
   - {fileID: 11400000, guid: 8d9ecb4ba3cb45243a02e76fe936c16a, type: 2}
