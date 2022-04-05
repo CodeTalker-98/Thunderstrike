@@ -129,6 +129,8 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.Save();
         }
 
+        //prefs Get int for scores??
+
         _uiManager.DisplayFinalScore(_score, _highScore);
     }
 

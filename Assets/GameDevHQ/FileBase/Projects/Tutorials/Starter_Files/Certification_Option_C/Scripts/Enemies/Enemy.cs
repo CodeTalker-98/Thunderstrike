@@ -87,7 +87,7 @@ public abstract class Enemy : MonoBehaviour, IDamagable
             transform.position = new Vector3(_xStart, 0.0f, 0.0f);
         }
 
-        int randomInt = Random.Range(0, 5);
+        int randomInt = Random.Range(0, 8);
 
         if (randomInt == 0 && !_isBoss)
         {
