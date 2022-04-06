@@ -23,27 +23,15 @@ public class ProjectileMovement : MonoBehaviour
 
     private void Start()
     {
-        Init();
         CheckID();
+        Init();
     }
 
     private void Init()
     {       
-        if (_isHomingProjectile)
-        {
-            _target = GameObject.Find("/Player Manager/Player");
-
-            if (_target == null)
-            {
-                Destroy(this.gameObject);
-            }
-
-            _homingMissileTimer = new WaitForSeconds(_homingTimer);
-        }
-
         if (GameManager.instance != null)
         {
-            if (GameManager.instance.isHardModeOn)
+            if (GameManager.instance.isHardModeOn && !_isPlayerProjectile)
             {
                 _damageAmount *= 2;
             }
@@ -63,6 +51,10 @@ public class ProjectileMovement : MonoBehaviour
 
         if (_isHomingProjectile)
         {
+            _target = GameObject.Find("/Player Manager/Player");
+
+            _homingMissileTimer = new WaitForSeconds(_homingTimer);
+
             if (_target != null)
             {
                 StartCoroutine(HomingMissileTimer());

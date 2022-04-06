@@ -49,7 +49,6 @@ public class Player : MonoBehaviour, IDamagable
     private void Update()
     {
         CheckLevelComplete();
-        //Debug.Log("Score: " + _score);
     }
 
     private void CheckLevelComplete()
@@ -93,8 +92,6 @@ public class Player : MonoBehaviour, IDamagable
                 GameManager.instance.GetScore(_score);
             }
 
-            //play death sound
-
             if (GameManager.instance != null)
             {
                 GameManager.instance.GameOverScreen();
@@ -134,6 +131,7 @@ public class Player : MonoBehaviour, IDamagable
     public void UpdateScore(int scoreValue)
     {
         _score += scoreValue;
+        GameManager.instance.GetScore(_score);
         _uiManager.DisplayScore(_score);
     }
 

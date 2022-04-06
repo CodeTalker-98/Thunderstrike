@@ -13,8 +13,6 @@ public class ZeppelinAI : Enemy
 
     private int _maxHealth;
 
-    private CapsuleCollider _capsuleCollider;
-
     private ZeppelinMovement _zeppelinMovement;
     private ZeppelinShoot _zeppelinShoot;
 
@@ -32,8 +30,6 @@ public class ZeppelinAI : Enemy
         _zeppelinShoot = GetComponentInChildren<ZeppelinShoot>();
         _maxHealth = Health;
         _stage = Stage.Basic;
-        _capsuleCollider = GetComponent<CapsuleCollider>();
-        _capsuleCollider.enabled = false;
     }
 
     private void Update()
@@ -54,7 +50,6 @@ public class ZeppelinAI : Enemy
                 case Stage.Modified:
                     _zeppelinMovement.ModifiedMovement();
                     _stageTwoDamagePrefab.SetActive(true);
-                    _capsuleCollider.enabled = true;
                     _zeppelinShoot.ModifiedShoot();
                     break;
                 case Stage.Final:

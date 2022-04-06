@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -6693,7 +6693,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 3.03e-43, y: NaN, z: 8.7e-44, w: 4.5919e-41}
+  m_BoundingSphereOverride: {x: -1.114e-42, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -13242,6 +13242,75 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 0.02
+--- !u!1001 &1177203495
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5508155079808645155, guid: fea8ed858b0671c4a94988c9ddd9b0c3,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508155079808645155, guid: fea8ed858b0671c4a94988c9ddd9b0c3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508155079808645155, guid: fea8ed858b0671c4a94988c9ddd9b0c3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508155079808645155, guid: fea8ed858b0671c4a94988c9ddd9b0c3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508155079808645155, guid: fea8ed858b0671c4a94988c9ddd9b0c3,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508155079808645155, guid: fea8ed858b0671c4a94988c9ddd9b0c3,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508155079808645155, guid: fea8ed858b0671c4a94988c9ddd9b0c3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508155079808645155, guid: fea8ed858b0671c4a94988c9ddd9b0c3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508155079808645155, guid: fea8ed858b0671c4a94988c9ddd9b0c3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508155079808645155, guid: fea8ed858b0671c4a94988c9ddd9b0c3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508155079808645155, guid: fea8ed858b0671c4a94988c9ddd9b0c3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508155079808645157, guid: fea8ed858b0671c4a94988c9ddd9b0c3,
+        type: 3}
+      propertyPath: m_Name
+      value: Nighthawk
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fea8ed858b0671c4a94988c9ddd9b0c3, type: 3}
 --- !u!1 &1225708547
 GameObject:
   m_ObjectHideFlags: 0
@@ -18684,7 +18753,7 @@ MonoBehaviour:
   - Bombers!? This one's gonna be tough.
   - You're really impressing me. I might have to promote you after this.
   - Radar isn't showing anything. We might be in trouble.
-  - That was a tough one. You've certainly got the guts Private!
+  - That was a tough one. You've certainly got guts Private!
   - Uh oh! Watch for the kamikaze! They will take you out of the fight for good!
   - Stay on your toes! The last leg of this mission is a difficult one.
   - These fighter jets might cause you some issues.

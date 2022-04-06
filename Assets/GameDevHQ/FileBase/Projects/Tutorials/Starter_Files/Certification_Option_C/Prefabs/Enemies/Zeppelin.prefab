@@ -73,7 +73,6 @@ GameObject:
   - component: {fileID: 3864732319363969290}
   - component: {fileID: 3864732319363969292}
   - component: {fileID: 3864732319363969288}
-  - component: {fileID: 9214506825487567436}
   m_Layer: 0
   m_Name: Zeppelin
   m_TagString: Enemy
@@ -125,6 +124,7 @@ MonoBehaviour:
   _isBoss: 1
   _isBomber: 0
   _cantRandomize: 0
+  _childMoves: 0
   _powerupPrefab: {fileID: 998905856523297257, guid: 782f409842896e549b71f1e75b878a75,
     type: 3}
   _collisionPrefab: {fileID: 4691645116330879498, guid: 4ce4a3d6140d9cf449ed4b175ce22237,
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76e8aa371e8758040b446dd991e0453a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementSpeed: 2
+  _movementSpeed: 4
 --- !u!23 &3864732319363969292
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -202,20 +202,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &9214506825487567436
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3864732319363969289}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 4.65
-  m_Height: 25
-  m_Direction: 0
-  m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!1 &3864732319435645822
 GameObject:
   m_ObjectHideFlags: 0
@@ -15269,15 +15255,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99be9b1b825888d4db01fe43941c4bff, type: 3}
---- !u!4 &1345719394283890056 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 99be9b1b825888d4db01fe43941c4bff,
-    type: 3}
-  m_PrefabInstance: {fileID: 6329317134190808722}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2663788402506454939 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 99be9b1b825888d4db01fe43941c4bff,
+    type: 3}
+  m_PrefabInstance: {fileID: 6329317134190808722}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1345719394283890056 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 99be9b1b825888d4db01fe43941c4bff,
     type: 3}
   m_PrefabInstance: {fileID: 6329317134190808722}
   m_PrefabAsset: {fileID: 0}
