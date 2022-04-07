@@ -8,10 +8,10 @@ public class NighthawkAI : Enemy
 
     private GameObject _nighthawk;
 
-    private Shader _invisibleShader;
-    private Shader _baseShader;
+    [SerializeField] private Material _invisibleShader;
+    [SerializeField] private Material _baseShader;
 
-    private Material _mat;
+    private MeshRenderer _mesh;
 
     private void Start()
     {
@@ -24,10 +24,7 @@ public class NighthawkAI : Enemy
 
         _nighthawk = transform.GetChild(0).gameObject;
 
-        _mat = _nighthawk.GetComponent<Renderer>().material;
-
-        _invisibleShader = Shader.Find("Shader Graphs/NighthawkShader_asset");
-        _baseShader = Shader.Find("Universal Render Pipeline/Lit");
+        _mesh = _nighthawk.GetComponent<MeshRenderer>();
 
         _isInvisible = true;
     }
@@ -41,11 +38,11 @@ public class NighthawkAI : Enemy
     {
         if (_isInvisible)
         {
-            _mat.shader = _invisibleShader;
+            _mesh.material = _invisibleShader;
         }
         else
         {
-            _mat.shader = _baseShader;
+            _mesh.material = _baseShader;
         }
 
     }
