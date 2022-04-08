@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -63,6 +64,11 @@ public class SpawnManager : MonoBehaviour
                 }
                 else
                 {
+                    if (_currentWave == 8)
+                    {
+                        GameManager.instance.checkpointReached = true;
+                    }
+
                     GameManager.instance.NextWave();
                     Destroy(_previousWave.gameObject);
                 }

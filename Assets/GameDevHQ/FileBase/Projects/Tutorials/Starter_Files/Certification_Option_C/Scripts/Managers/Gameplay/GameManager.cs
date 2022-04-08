@@ -20,8 +20,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _currentWave;
     [SerializeField] private float _brightness;
 
-    private bool _checkpointReached = false;
-
     private int _score;
     private int _highScore = 0;
 
@@ -37,6 +35,7 @@ public class GameManager : MonoBehaviour
     public bool isHardModeOn { get; private set; }
     public bool levelComplete = false;
     public bool isDead = false;
+    public bool checkpointReached = false;
 
     public static GameManager instance;
 
@@ -94,16 +93,17 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         LevelStatus();
+        Debug.Log("GM Wave: " + _currentWave);
     }
 
     private void LevelStatus()
     {
         _currentWave = _spawnManager.GetCurrentWave(); 
 
-        if (_currentWave == 8)
+        /*if (_currentWave == 8)
         {
-            _checkpointReached = true;
-        }
+            checkpointReached = true;
+        }*/
     }
 
     public void GameOverScreen()
@@ -164,7 +164,7 @@ public class GameManager : MonoBehaviour
 
     public void RetryCheckpoint()
     {
-        if (_checkpointReached)
+        if (checkpointReached)
         {
             _score = PlayerPrefs.GetInt("Score", 0);
             SetWaveNumber();

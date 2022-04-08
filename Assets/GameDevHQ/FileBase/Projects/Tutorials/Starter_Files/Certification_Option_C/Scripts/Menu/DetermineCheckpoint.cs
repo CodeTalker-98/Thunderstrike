@@ -24,7 +24,7 @@ public class DetermineCheckpoint : MonoBehaviour
     {
         if (GameManager.instance != null)
         {
-            if (GameManager.instance.SendWaveNumber() < 9)
+            if (!GameManager.instance.checkpointReached)
             {
                 _retryButton.SetActive(true);
                 _checkpointButton.SetActive(false);

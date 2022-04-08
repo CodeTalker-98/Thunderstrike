@@ -18696,6 +18696,7 @@ MonoBehaviour:
   _brightness: 0
   levelComplete: 0
   isDead: 0
+  checkpointReached: 0
 --- !u!1 &1610913117
 GameObject:
   m_ObjectHideFlags: 0

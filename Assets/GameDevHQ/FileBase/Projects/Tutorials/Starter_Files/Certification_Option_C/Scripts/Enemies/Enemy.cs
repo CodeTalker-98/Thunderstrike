@@ -71,7 +71,7 @@ public abstract class Enemy : MonoBehaviour, IDamagable
             {
                 if (_isBomber)
                 {
-                    _yStart = Random.Range(6.0f, 12.0f);
+                    _yStart = Random.Range(2.0f, 12.0f);
                 }
                 else
                 {
