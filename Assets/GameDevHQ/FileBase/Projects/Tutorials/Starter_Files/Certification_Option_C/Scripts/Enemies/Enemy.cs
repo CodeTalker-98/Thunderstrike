@@ -149,7 +149,16 @@ public abstract class Enemy : MonoBehaviour, IDamagable
                 }
             }
 
-            Instantiate(_deathPrefab, transform.position, Quaternion.identity);
+            if (!_childMoves)
+            {
+                Instantiate(_deathPrefab, transform.position, Quaternion.identity);
+            }
+            else
+            {
+                Transform childPosition = this.gameObject.transform.GetChild(0).transform;
+
+                Instantiate(_deathPrefab, childPosition.position, Quaternion.identity);
+            }
             Destroy(this.gameObject);
         }
     }

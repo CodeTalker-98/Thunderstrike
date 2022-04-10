@@ -93,7 +93,6 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         LevelStatus();
-        Debug.Log("GM Wave: " + _currentWave);
     }
 
     private void LevelStatus()
